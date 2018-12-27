@@ -1,0 +1,36 @@
+# Inspired by https://docs.docker.com/compose/django/
+version: '3'
+
+services:
+  db:
+    # NOTE: No persistance storage configured.
+    # See: https://hub.docker.com/_/postgres/
+    image: postgres
+  web:
+    build: .
+    environment:
+      - DJANGO_SETTINGS_MODULE=vrl.conf.docker
+      - SECRET_KEY=${SECRET_KEY:-toxua5c%l3mgn)73!2@)m6l-40+5wi597=v9r42_fnz+cwbnr0}
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  # See: src/vrl/conf/docker.py
+  # Optional containers below:
+#  elasticsearch:
+#    # NOTE: No persistance storage configured.
+#    # See: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+#    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+#    container_name: elasticsearch
+#    environment:
+#      - discovery.type=single-node
+#      - cluster.routing.allocation.disk.threshold_enabled=false
+#    ports:
+#      - 9200:9200
+#  redis:
+#    # NOTE: No persistance storage configured.
+#    # See: https://hub.docker.com/_/redis/
+#    image: redis
+#    ports:
+#        - 6379:6379

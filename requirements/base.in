@@ -1,0 +1,15 @@
+pip-tools
+psycopg2
+python-dotenv
+pytz
+raven
+
+Django
+django-axes
+django-choices
+django-cors-middleware
+
+djangorestframework
+djangorestframework-camel-case
+drf-yasg
+zds-schema
