@@ -3,6 +3,8 @@ import os
 # Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
 
+from .api import *  # noqa
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 DJANGO_PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 BASE_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.path.pardir))
@@ -44,25 +46,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Optional applications.
-    'ordered_model',
-    'django_admin_index',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     # 'django.contrib.humanize',
     # 'django.contrib.sitemaps',
 
-    # django-admin-tools
-    # 'admin_tools',
-    # 'admin_tools.theming',
-    # 'admin_tools.menu',
-    # 'admin_tools.dashboard',
-
     # External applications.
     'axes',
-    'sniplates',
-    'hijack',
-    'compat',  # Part of hijack
-    'hijack_admin',
+    'corsheaders',
+    'zds_schema',  # before drf_yasg to override the management command
+    'drf_yasg',
+    'rest_framework',
 
     # Project applications.
     'vrl.accounts',
@@ -78,6 +72,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'zds_schema.middleware.APIVersionHeaderMiddleware',
 ]
 
 ROOT_URLCONF = 'vrl.urls'
@@ -103,8 +100,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'vrl.utils.context_processors.settings',
-                # REQUIRED FOR ADMIN INDEX
-                'django_admin_index.context_processors.dashboard',
             ],
             'loaders': RAW_TEMPLATE_LOADERS
         },
@@ -140,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'nl-nl'
 
-TIME_ZONE = 'Europe/Amsterdam'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -282,6 +277,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
+SESSION_COOKIE_NAME = 'vrl_sessionid'
+
 #
 # Custom settings
 #
@@ -292,8 +289,6 @@ SHOW_ALERT = True
 #
 # Library settings
 #
-
-ADMIN_INDEX_SHOW_REMAINING_APPS = True
 
 # Django-axes
 AXES_LOGIN_FAILURE_LIMIT = 30  # Default: 3
