@@ -3,7 +3,7 @@
 set -e # exit on error
 set -x # echo commands
 
-CONTAINER_REPO=vngr/vrl
+CONTAINER_REPO=vngr/vng-referentielijsten
 
 git_tag=$(git tag --points-at HEAD) &>/dev/null
 git_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -12,7 +12,6 @@ git_branch=$(git rev-parse --abbrev-ref HEAD)
 build_image() {
     tag=$1
     docker build \
-        --target production \
         -t ${CONTAINER_REPO}:$tag \
         -f Dockerfile .
 }

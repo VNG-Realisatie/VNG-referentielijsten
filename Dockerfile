@@ -83,13 +83,13 @@ COPY --from=backend-build /usr/local/lib/python3.7 /usr/local/lib/python3.7
 COPY --from=backend-build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 
 # copy build statics
-COPY --from=frontend-build /app/src/{{ project_name|lower }}/static /app/src/{{ project_name|lower }}/static
+COPY --from=frontend-build /app/src/vrl/static /app/src/vrl/static
 
 
 # copy source code
 COPY ./src /app/src
 
-ENV DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker
+ENV DJANGO_SETTINGS_MODULE=vrl.conf.docker
 
 ARG SECRET_KEY=dummy
 
