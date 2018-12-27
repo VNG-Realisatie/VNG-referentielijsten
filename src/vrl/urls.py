@@ -4,8 +4,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import path, re_path
-from django.views.generic.base import TemplateView
+from django.urls import path, re_path, reverse_lazy
+from django.views.generic import RedirectView
 
 handler500 = 'vrl.utils.views.server_error'
 admin.site.site_header = 'VRL admin'
@@ -25,7 +25,9 @@ urlpatterns = [
     path('ref/', include('zds_schema.urls')),
 
     # Simply show the master template.
-    path('', TemplateView.as_view(template_name='demo.html')),
+    path('', RedirectView.as_view(
+        url=reverse_lazy('schema-redoc', kwargs={'version': '1'})
+    )),
 ]
 
 # NOTE: The staticfiles_urlpatterns also discovers static files (ie. no need to run collectstatic). Both the static
