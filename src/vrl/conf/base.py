@@ -60,6 +60,8 @@ INSTALLED_APPS = [
 
     # Project applications.
     'vrl.accounts',
+    'vrl.api',
+    'vrl.datamodel',
     'vrl.utils',
 ]
 
