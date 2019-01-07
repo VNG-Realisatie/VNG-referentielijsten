@@ -46,7 +46,7 @@ References
      :target: https://requires.io/github/maykinmedia/vng-referentielijsten/requirements/?branch=master
      :alt: Requirements status
 
-.. _testomgeving: https://ref.tst.vng.cloud/zrc/
+.. _testomgeving: https://ref.tst.vng.cloud/referentielijsten/
 
 Licentie
 ========
