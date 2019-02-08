@@ -29,7 +29,7 @@ itypes==1.1.0             # via coreapi
 jinja2==2.10              # via coreschema
 markupsafe==1.1.0         # via jinja2
 oyaml==0.7                # via zds-schema
-pip-tools==3.2.0
+pip-tools==3.3.2
 psycopg2==2.7.6.1
 pyjwt==1.7.1              # via gemma-zds-client, zds-schema
 python-dotenv==0.10.1
@@ -42,4 +42,4 @@ six==1.12.0               # via drf-yasg, isodate, pip-tools
 unidecode==1.0.23         # via zds-schema
 uritemplate==3.0.0        # via coreapi, drf-yasg
 urllib3==1.24.1           # via requests
-zds-schema==0.17.10
+zds-schema==0.20.7

@@ -27,5 +27,46 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/o
 | toelichting | Toelichting van het procestype | string | ja | C​R​U​D |
 | procesobject | Object waar de uitvoering van het proces op van toepassing is en waarvan de bestaans- of geldigheidsduur eventueel van belang is bij het bepalen van de start van de bewaartermijn | string | ja | C​R​U​D |
 
+## Resultaat
+
+Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/objecttype/resultaat)
+
+| Attribuut | Omschrijving | Type | Verplicht | CRUD* |
+| --- | --- | --- | --- | --- |
+| url |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| procesType |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| nummer | Nummer van het resultaat. Dit wordt samengesteld met het procestype en generiek resultaat indien van toepassing. | integer | ja | C​R​U​D |
+| volledigNummer |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| generiek |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| specifiek |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| naam | Benaming van het procestype | string | ja | C​R​U​D |
+| omschrijving | Omschrijving van het specifieke resultaat | string | nee | C​R​U​D |
+| herkomst | Voorbeeld: &#39;Risicoanalyse&#39;, &#39;Systeemanalyse&#39; of verwijzing naar Wet- en regelgeving | string | ja | C​R​U​D |
+| waardering |  | string | ja | C​R​U​D |
+| procestermijn | De mapping van waarden naar weergave is als volgt:
+
+* `nihil` - Nihil
+* `bestaansduur_procesobject` - De bestaans- of geldigheidsduur van het procesobject.
+* `ingeschatte_bestaansduur_procesobject` - De ingeschatte maximale bestaans- of geldigheidsduur van het procesobject.
+* `vast_te_leggen_datum` - Een tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. 
+* `samengevoegd_met_bewaartermijn` - De procestermijn is samengevoegd met de bewaartermijn. | string | nee | C​R​U​D |
+| procestermijnWeergave |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| bewaartermijn |  | string | nee | C​R​U​D |
+| toelichting |  | string | nee | C​R​U​D |
+| algemeenBestuurEnInrichtingOrganisatie |  | boolean | nee | C​R​U​D |
+| bedrijfsvoeringEnPersoneel |  | boolean | nee | C​R​U​D |
+| publiekeInformatieEnRegistratie |  | boolean | nee | C​R​U​D |
+| burgerzaken |  | boolean | nee | C​R​U​D |
+| veiligheid |  | boolean | nee | C​R​U​D |
+| verkeerEnVervoer |  | boolean | nee | C​R​U​D |
+| economie |  | boolean | nee | C​R​U​D |
+| onderwijs |  | boolean | nee | C​R​U​D |
+| sportCultuurEnRecreatie |  | boolean | nee | C​R​U​D |
+| sociaalDomein |  | boolean | nee | C​R​U​D |
+| volksgezonheidEnMilieu |  | boolean | nee | C​R​U​D |
+| vhrosv |  | boolean | nee | C​R​U​D |
+| heffenBelastingen |  | boolean | nee | C​R​U​D |
+| alleTaakgebieden |  | boolean | nee | C​R​U​D |
+
 
 * Create, Read, Update, Delete

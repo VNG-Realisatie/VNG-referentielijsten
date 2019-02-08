@@ -12,4 +12,4 @@ django-cors-middleware
 djangorestframework
 djangorestframework-camel-case
 drf-yasg
-zds-schema==0.17.10
+zds-schema==0.20.7

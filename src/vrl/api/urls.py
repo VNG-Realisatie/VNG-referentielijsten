@@ -4,13 +4,14 @@ from django.urls import include, path
 from zds_schema import routers
 from zds_schema.schema import SchemaView
 
-from vrl.selectielijst.api.viewsets import ProcesTypeViewSet
+from vrl.selectielijst.api.viewsets import ProcesTypeViewSet, ResultaatViewSet
 
 from .viewsets import CommunicatieKanaalViewSet
 
 router = routers.DefaultRouter()
 router.register('communicatiekanalen', CommunicatieKanaalViewSet)
 router.register('procestypen', ProcesTypeViewSet)
+router.register('resultaten', ResultaatViewSet)
 
 
 # TODO: the EndpointEnumerator seems to choke on path and re_path

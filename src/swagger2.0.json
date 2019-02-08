@@ -670,6 +670,363 @@
                     "format": "uuid"
                 }
             ]
+        },
+        "/resultaten": {
+            "get": {
+                "operationId": "resultaat_list",
+                "summary": "Ontsluit de selectielijst resultaten.",
+                "description": "Bij een procestype horen meerdere mogelijke resultaten, al dan niet\ngeneriek/specifiek. Bij het configureren van een resultaattype in het ZTC\nwordt aangegeven welke selectielijstklasse van toepassing is, wat een\nreferentie is naar een item van deze resource.\n\nZie https://vng.nl/files/vng/20170706-selectielijst-gemeenten-intergemeentelijke-organen-2017.pdf\nvoor de bron van de inhoud.",
+                "parameters": [
+                    {
+                        "name": "procesType",
+                        "in": "query",
+                        "description": "URL to the related resource",
+                        "required": false,
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "required": [
+                                "count",
+                                "results"
+                            ],
+                            "type": "object",
+                            "properties": {
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "next": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "previous": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Resultaat"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ValidatieFout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "410": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "resultaten"
+                ]
+            },
+            "parameters": []
+        },
+        "/resultaten/{uuid}": {
+            "get": {
+                "operationId": "resultaat_read",
+                "summary": "Ontsluit de selectielijst resultaten.",
+                "description": "Bij een procestype horen meerdere mogelijke resultaten, al dan niet\ngeneriek/specifiek. Bij het configureren van een resultaattype in het ZTC\nwordt aangegeven welke selectielijstklasse van toepassing is, wat een\nreferentie is naar een item van deze resource.\n\nZie https://vng.nl/files/vng/20170706-selectielijst-gemeenten-intergemeentelijke-organen-2017.pdf\nvoor de bron van de inhoud.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Resultaat"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "410": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "415": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Fout"
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "resultaten"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "uuid",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "format": "uuid"
+                }
+            ]
         }
     },
     "definitions": {
@@ -782,7 +1139,7 @@
                     "title": "Procestypeomschrijving",
                     "description": "Omschrijving van het procestype",
                     "type": "string",
-                    "maxLength": 80,
+                    "maxLength": 255,
                     "minLength": 1
                 },
                 "toelichting": {
@@ -797,6 +1154,243 @@
                     "type": "string",
                     "maxLength": 80,
                     "minLength": 1
+                }
+            }
+        },
+        "Resultaat": {
+            "required": [
+                "nummer",
+                "naam",
+                "herkomst",
+                "waardering"
+            ],
+            "type": "object",
+            "properties": {
+                "url": {
+                    "title": "Url",
+                    "type": "string",
+                    "format": "uri",
+                    "readOnly": true
+                },
+                "procesType": {
+                    "title": "Proces type",
+                    "type": "string",
+                    "format": "uri",
+                    "readOnly": true
+                },
+                "nummer": {
+                    "title": "Nummer",
+                    "description": "Nummer van het resultaat. Dit wordt samengesteld met het procestype en generiek resultaat indien van toepassing.",
+                    "type": "integer",
+                    "maximum": 32767,
+                    "minimum": 0
+                },
+                "volledigNummer": {
+                    "title": "Volledig nummer",
+                    "type": "string",
+                    "readOnly": true
+                },
+                "generiek": {
+                    "title": "Generiek",
+                    "type": "string",
+                    "readOnly": true
+                },
+                "specifiek": {
+                    "title": "Specifiek",
+                    "type": "string",
+                    "readOnly": true
+                },
+                "naam": {
+                    "title": "Naam",
+                    "description": "Benaming van het procestype",
+                    "type": "string",
+                    "maxLength": 40,
+                    "minLength": 1
+                },
+                "omschrijving": {
+                    "title": "Omschrijving",
+                    "description": "Omschrijving van het specifieke resultaat",
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "herkomst": {
+                    "title": "Herkomst",
+                    "description": "Voorbeeld: 'Risicoanalyse', 'Systeemanalyse' of verwijzing naar Wet- en regelgeving",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "waardering": {
+                    "title": "Waardering",
+                    "type": "string",
+                    "enum": [
+                        "bewaren",
+                        "vernietigen"
+                    ]
+                },
+                "procestermijn": {
+                    "title": "Procestermijn",
+                    "description": "De mapping van waarden naar weergave is als volgt:\n\n* `nihil` - Nihil\n* `bestaansduur_procesobject` - De bestaans- of geldigheidsduur van het procesobject.\n* `ingeschatte_bestaansduur_procesobject` - De ingeschatte maximale bestaans- of geldigheidsduur van het procesobject.\n* `vast_te_leggen_datum` - Een tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. \n* `samengevoegd_met_bewaartermijn` - De procestermijn is samengevoegd met de bewaartermijn.",
+                    "type": "string",
+                    "enum": [
+                        "nihil",
+                        "bestaansduur_procesobject",
+                        "ingeschatte_bestaansduur_procesobject",
+                        "vast_te_leggen_datum",
+                        "samengevoegd_met_bewaartermijn"
+                    ]
+                },
+                "procestermijnWeergave": {
+                    "title": "Procestermijn weergave",
+                    "type": "string",
+                    "readOnly": true,
+                    "minLength": 1
+                },
+                "bewaartermijn": {
+                    "title": "Bewaartermijn",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "toelichting": {
+                    "title": "Toelichting",
+                    "type": "string"
+                },
+                "algemeenBestuurEnInrichtingOrganisatie": {
+                    "title": "Algemeen bestuur en inrichting organisatie",
+                    "type": "boolean"
+                },
+                "bedrijfsvoeringEnPersoneel": {
+                    "title": "Bedrijfsvoering en personeel",
+                    "type": "boolean"
+                },
+                "publiekeInformatieEnRegistratie": {
+                    "title": "Publieke informatie en registratie",
+                    "type": "boolean"
+                },
+                "burgerzaken": {
+                    "title": "Burgerzaken",
+                    "type": "boolean"
+                },
+                "veiligheid": {
+                    "title": "Veiligheid",
+                    "type": "boolean"
+                },
+                "verkeerEnVervoer": {
+                    "title": "Verkeer en vervoer",
+                    "type": "boolean"
+                },
+                "economie": {
+                    "title": "Economie",
+                    "type": "boolean"
+                },
+                "onderwijs": {
+                    "title": "Onderwijs",
+                    "type": "boolean"
+                },
+                "sportCultuurEnRecreatie": {
+                    "title": "Sport, cultuur en recreatie",
+                    "type": "boolean"
+                },
+                "sociaalDomein": {
+                    "title": "Sociaal domein",
+                    "type": "boolean"
+                },
+                "volksgezonheidEnMilieu": {
+                    "title": "Volksgezonheid en milieu",
+                    "type": "boolean"
+                },
+                "vhrosv": {
+                    "title": "VHROSV",
+                    "type": "boolean"
+                },
+                "heffenBelastingen": {
+                    "title": "Heffen belastingen etc.",
+                    "type": "boolean"
+                },
+                "alleTaakgebieden": {
+                    "title": "Alle taakgebieden",
+                    "type": "boolean"
+                }
+            }
+        },
+        "FieldValidationError": {
+            "required": [
+                "name",
+                "code",
+                "reason"
+            ],
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "description": "Naam van het veld met ongeldige gegevens",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "code": {
+                    "title": "Code",
+                    "description": "Systeemcode die het type fout aangeeft",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "reason": {
+                    "title": "Reason",
+                    "description": "Uitleg wat er precies fout is met de gegevens",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "ValidatieFout": {
+            "required": [
+                "code",
+                "title",
+                "status",
+                "detail",
+                "instance",
+                "invalid-params"
+            ],
+            "type": "object",
+            "properties": {
+                "type": {
+                    "title": "Type",
+                    "description": "URI referentie naar het type fout, bedoeld voor developers",
+                    "type": "string"
+                },
+                "code": {
+                    "title": "Code",
+                    "description": "Systeemcode die het type fout aangeeft",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "title": {
+                    "title": "Title",
+                    "description": "Generieke titel voor het type fout",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "status": {
+                    "title": "Status",
+                    "description": "De HTTP status code",
+                    "type": "integer"
+                },
+                "detail": {
+                    "title": "Detail",
+                    "description": "Extra informatie bij de fout, indien beschikbaar",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "instance": {
+                    "title": "Instance",
+                    "description": "URI met referentie naar dit specifiek voorkomen van de fout. Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "invalid-params": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FieldValidationError"
+                    }
                 }
             }
         }
