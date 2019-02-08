@@ -9,7 +9,8 @@ class CommunicatieKanaalTests(APITestCase):
 
     def test_list_and_detail(self):
         url = reverse('communicatiekanaal-list')
-        CommunicatieKanaalFactory.create_batch(20)
+        for i in range(0, 20):
+            CommunicatieKanaalFactory.create(naam=str(i))
 
         response = self.client.get(url)
 
