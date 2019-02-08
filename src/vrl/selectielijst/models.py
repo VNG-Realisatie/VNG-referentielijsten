@@ -16,7 +16,7 @@ class ProcesType(models.Model):
         help_text=_("Benaming van het procestype")
     )
     omschrijving = models.CharField(
-        _("procestypeomschrijving"), max_length=80,
+        _("procestypeomschrijving"), max_length=255,
         help_text=_("Omschrijving van het procestype")
     )
     toelichting = models.TextField(
