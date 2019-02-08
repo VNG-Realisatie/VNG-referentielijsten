@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'vrl.accounts',
     'vrl.api',
     'vrl.datamodel',
-    'vrl.procestypen',
+    'vrl.selectielijst',
     'vrl.utils',
 ]
 
