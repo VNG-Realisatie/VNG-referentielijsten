@@ -27,6 +27,17 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/o
 | toelichting | Toelichting van het procestype | string | ja | C​R​U​D |
 | procesobject | Object waar de uitvoering van het proces op van toepassing is en waarvan de bestaans- of geldigheidsduur eventueel van belang is bij het bepalen van de start van de bewaartermijn | string | ja | C​R​U​D |
 
+## ResultaattypeOmschrijvingGeneriek
+
+Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/objecttype/resultaattypeomschrijvinggeneriek)
+
+| Attribuut | Omschrijving | Type | Verplicht | CRUD* |
+| --- | --- | --- | --- | --- |
+| url |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| omschrijving | Algemeen gehanteerde omschrijvingen van de aard van het resultaat van zaken | string | ja | C​R​U​D |
+| definitie | Nauwkeurige beschrijving van het generieke type resultaat. | string | ja | C​R​U​D |
+| opmerking | Zinvolle toelichting bij de waarde van de generieke omschrijving van het resultaat. | string | nee | C​R​U​D |
+
 ## Resultaat
 
 Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/objecttype/resultaat)

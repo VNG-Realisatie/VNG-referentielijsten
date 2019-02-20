@@ -6,10 +6,13 @@ from zds_schema.schema import SchemaView
 
 from vrl.selectielijst.api.viewsets import ProcesTypeViewSet, ResultaatViewSet
 
-from .viewsets import CommunicatieKanaalViewSet
+from .viewsets import (
+    CommunicatieKanaalViewSet, ResultaattypeOmschrijvingGeneriekViewSet
+)
 
 router = routers.DefaultRouter()
 router.register('communicatiekanalen', CommunicatieKanaalViewSet)
+router.register('resultaattypeomschrijvingen', ResultaattypeOmschrijvingGeneriekViewSet)
 router.register('procestypen', ProcesTypeViewSet)
 router.register('resultaten', ResultaatViewSet)
 

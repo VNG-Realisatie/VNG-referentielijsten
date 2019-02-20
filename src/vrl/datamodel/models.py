@@ -56,8 +56,8 @@ class ResultaattypeOmschrijvingGeneriek(models.Model):
     )
 
     class Meta:
-        verbose_name = _("generieke omschrijving resultaattype")
-        verbose_name_plural = _("generieke omschrijvingen resultaattype")
+        verbose_name = _("generieke resultaattypeomschrijving")
+        verbose_name_plural = _("generieke resultaattypeomschrijvingen")
 
     def __str__(self):
         return self.omschrijving
