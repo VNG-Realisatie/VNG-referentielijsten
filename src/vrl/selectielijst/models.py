@@ -3,6 +3,7 @@ import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from relativedeltafield import RelativeDeltaField
 
 from .constants import ArchiefNominaties, Procestermijnen
 from .query import ResultaatQuerySet
@@ -16,11 +17,11 @@ class ProcesType(models.Model):
         help_text=_("Nummer van de selectielijstcategorie")
     )
     naam = models.CharField(
-        _("procestypenaam"), max_length=40,
+        _("procestypenaam"), max_length=100,
         help_text=_("Benaming van het procestype")
     )
     omschrijving = models.CharField(
-        _("procestypeomschrijving"), max_length=255,
+        _("procestypeomschrijving"), max_length=300,
         help_text=_("Omschrijving van het procestype")
     )
     toelichting = models.TextField(
@@ -64,16 +65,16 @@ class Resultaat(models.Model):
         help_text=_("Benaming van het procestype")
     )
     omschrijving = models.CharField(
-        _("omschrijving"), max_length=100, blank=True,
+        _("omschrijving"), max_length=150, blank=True,
         help_text=_("Omschrijving van het specifieke resultaat")
     )
     herkomst = models.CharField(
-        _("herkomst"), max_length=100,
+        _("herkomst"), max_length=200,
         help_text=_("Voorbeeld: 'Risicoanalyse', 'Systeemanalyse' of verwijzing naar Wet- en regelgeving")
     )
     waardering = models.CharField(_("waardering"), max_length=20, choices=ArchiefNominaties.choices)
     procestermijn = models.CharField(_("procestermijn"), max_length=50, choices=Procestermijnen.choices, blank=True)
-    bewaartermijn = models.DurationField(_("bewaartermijn"), null=True, blank=True)
+    bewaartermijn = RelativeDeltaField(_("bewaartermijn"), null=True, blank=True)
     toelichting = models.TextField(_("toelichting"), blank=True)
 
     # relevant domains
