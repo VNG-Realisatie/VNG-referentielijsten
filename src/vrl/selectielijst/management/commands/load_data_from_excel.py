@@ -13,7 +13,7 @@ from vrl.selectielijst.constants import ArchiefNominaties, Procestermijnen
 
 def check_choice(string, choice_dict):
     if not string:
-        return
+        return ''
     for k, v in choice_dict.items():
         if str(v)[:25] in string:
             return k
