@@ -72,7 +72,7 @@ class Resultaat(models.Model):
         _("herkomst"), max_length=200,
         help_text=_("Voorbeeld: 'Risicoanalyse', 'Systeemanalyse' of verwijzing naar Wet- en regelgeving")
     )
-    waardering = models.CharField(_("waardering"), max_length=20, choices=ArchiefNominaties.choices)
+    waardering = models.CharField(_("waardering"), max_length=50, choices=ArchiefNominaties.choices)
     procestermijn = models.CharField(_("procestermijn"), max_length=50, choices=Procestermijnen.choices, blank=True)
     bewaartermijn = RelativeDeltaField(_("bewaartermijn"), null=True, blank=True)
     toelichting = models.TextField(_("toelichting"), blank=True)

@@ -11,6 +11,14 @@ from vrl.selectielijst.constants import ArchiefNominaties, Procestermijnen
 # python src/manage.pload_data_from_excel /home/anna/Downloads/20170704-ontwerpselectielijst_opsomming_excel_definitief_versie2_0.xls
 # curl -X POST http://127.0.0.1:8081/api/v1/resultaten -H "Content-Type: application/json" --data @/home/anna/Downloads/test_procestermijn_nihil.json
 
+def read_xls_row_to_dict(sheet):
+    keys = [sheet.cell(0, col_index).value for col_index in range(sheet.ncols)]
+
+    for row_index in range(1, sheet.nrows):
+        yield {keys[col_index]: sheet.cell(row_index, col_index).value
+               for col_index in range(sheet.ncols)}
+
+
 def check_choice(string, choice_dict):
     if not string:
         return ''
@@ -106,11 +114,8 @@ class Command(BaseCommand):
         file_path = kwargs['file_path']
         book = open_workbook(file_path)
         sheet = book.sheet_by_index(0)
-        keys = [sheet.cell(0, col_index).value for col_index in range(sheet.ncols)]
 
-        for row_index in range(1, sheet.nrows):
-            raw = {keys[col_index]: sheet.cell(row_index, col_index).value
-                 for col_index in range(sheet.ncols)}
+        for raw in read_xls_row_to_dict(sheet):
             # load to ProcesType
             processtype_data = prepare_procestype(raw)
             # if current nummer already exists - do nothing
