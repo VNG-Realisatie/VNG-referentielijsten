@@ -98,6 +98,10 @@ class Resultaat(models.Model):
     vhrosv = models.BooleanField(_("VHROSV"), default=False)
     heffen_belastingen = models.BooleanField(_("heffen belastingen etc."), default=False)
     alle_taakgebieden = models.BooleanField(_("alle taakgebieden"), default=False)
+    procestermijn_opmerking = models.CharField(
+        _("procestermijn opmerking"), max_length=20, null=True, blank=True,
+        help_text=_("Voorbeeld: '25 jaar', '30 jaar, '5 of 10 jaar'")
+    )
 
     objects = ResultaatQuerySet.as_manager()
 

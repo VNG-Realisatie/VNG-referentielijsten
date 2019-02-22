@@ -84,7 +84,13 @@ def prepare_resultaat(raw):
     clean_data['omschrijving'] = raw['Omschrijving']
     clean_data['herkomst'] = raw['Herkomst']
     clean_data['waardering'] = check_choice(raw['Waardering'], ArchiefNominaties.labels)
-    clean_data['procestermijn'] = check_choice(raw['Procestermijn'], Procestermijnen.labels)
+
+    if ',' in raw['Procestermijn'].replace('(', ','):
+        opmerking, procestermijn = raw['Procestermijn'].replace('(', ',').split(',')
+    else:
+        opmerking, procestermijn = None, raw['Procestermijn']
+    clean_data['procestermijn'] = check_choice(procestermijn, Procestermijnen.labels)
+    clean_data['procestermijn_opmerking'] = opmerking
     clean_data['bewaartermijn'] = parse_duration(raw['Bewaartermijn'])
     clean_data['toelichting'] = raw['Toelichting']
     clean_data['algemeen_bestuur_en_inrichting_organisatie'] = bool(raw['Algemeen bestuur en inrichting organisatie'])
