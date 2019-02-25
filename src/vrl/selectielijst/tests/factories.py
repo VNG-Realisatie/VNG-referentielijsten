@@ -19,7 +19,7 @@ class ResultaatFactory(factory.django.DjangoModelFactory):
     proces_type = factory.SubFactory(ProcesTypeFactory)
 
     nummer = factory.Sequence(lambda n: n)
-    naam = factory.Faker('bs')
+    naam = factory.fuzzy.FuzzyText(length=40)
     herkomst = factory.fuzzy.FuzzyChoice(['Risicoanalyse', 'Systeemanalyse'])
     waardering = factory.fuzzy.FuzzyChoice(ArchiefNominaties.values)
 

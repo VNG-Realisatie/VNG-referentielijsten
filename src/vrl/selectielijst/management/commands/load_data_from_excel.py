@@ -88,7 +88,7 @@ def prepare_resultaat(raw):
     if ',' in raw['Procestermijn'].replace('(', ','):
         opmerking, procestermijn = raw['Procestermijn'].replace('(', ',').split(',')
     else:
-        opmerking, procestermijn = None, raw['Procestermijn']
+        opmerking, procestermijn = '', raw['Procestermijn']
     clean_data['procestermijn'] = check_choice(procestermijn, Procestermijnen.labels)
     clean_data['procestermijn_opmerking'] = opmerking
     clean_data['bewaartermijn'] = parse_duration(raw['Bewaartermijn'])
