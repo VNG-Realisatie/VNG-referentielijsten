@@ -44,7 +44,7 @@ development machine.
 
    .. code-block:: bash
 
-       $ git clone git@github.com:maykinmedia/vng-referentielijsten.git
+       $ git clone git@github.com:VNG-Realisatie/VNG-referentielijsten.git
        $ cd vrl
 
 3. Install all required libraries.
