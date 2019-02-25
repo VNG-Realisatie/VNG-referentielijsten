@@ -3,11 +3,13 @@ psycopg2
 python-dotenv
 pytz
 raven
+xlrd
 
 Django
 django-axes
 django-choices
 django-cors-middleware
+django-relativedelta
 
 djangorestframework
 djangorestframework-camel-case
