@@ -3,7 +3,7 @@ psycopg2
 python-dotenv
 pytz
 raven
-xlrd
+tablib
 
 Django
 django-axes

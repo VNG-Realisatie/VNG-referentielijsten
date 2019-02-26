@@ -1,12 +1,12 @@
 import os
-from xlrd import open_workbook
+import tablib
 
 from django.core.management import call_command
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase
 
 from vrl.selectielijst.management.commands.load_data_from_excel \
-    import check_choice, parse_duration, prepare_procestype, prepare_resultaat, read_xls_row_to_dict
+    import check_choice, parse_duration, prepare_procestype, prepare_resultaat
 from vrl.selectielijst.models import ProcesType, Resultaat
 
 
@@ -16,7 +16,7 @@ class LoadDataFromExcelTest(TestCase):
     """ Test my custom command."""
 
     def setUp(self):
-        self.sheet = open_workbook(TESTDATA_FILENAME).sheet_by_index(0)
+        self.dataset = tablib.import_set(open(TESTDATA_FILENAME, 'rb').read())
 
         self.raw = { 'Procestypenummer': 1,
                      'Procestypenaam': 'Instellen en inrichten organisatie',
@@ -188,18 +188,6 @@ class LoadDataFromExcelTest(TestCase):
         self.assertEqual(
             specifiek['nummer'],
             2
-        )
-
-    def test_read_xls_row_to_dict_read(self):
-        """
-        test read_xls_row_to_dict generator: on reading and converting to dict first row of data in xls file
-        """
-        sheet_iter = read_xls_row_to_dict(self.sheet)
-        first_row = next(sheet_iter)
-
-        self.assertDictEqual(
-            first_row,
-            self.raw
         )
 
     def test_command_no_argument(self):

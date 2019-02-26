@@ -2,19 +2,11 @@ import re
 
 from django.core.management.base import BaseCommand
 
+import tablib
 from dateutil.relativedelta import relativedelta
-from xlrd import open_workbook
 
 from vrl.selectielijst.constants import ArchiefNominaties, Procestermijnen
 from vrl.selectielijst.models import ProcesType, Resultaat
-
-
-def read_xls_row_to_dict(sheet):
-    keys = [sheet.cell(0, col_index).value for col_index in range(sheet.ncols)]
-
-    for row_index in range(1, sheet.nrows):
-        yield {keys[col_index]: sheet.cell(row_index, col_index).value
-               for col_index in range(sheet.ncols)}
 
 
 def check_choice(string, choice_dict):
@@ -71,9 +63,9 @@ def prepare_resultaat(raw):
 
     if raw['Generiek / specifiek'] == 'Specifiek':
         generiek_nummer = int(re.match(r"\d+\.(\d+)\.\d+", raw['Nr.']).group(1))
-        clean_data['generiek_resultaat'] = Resultaat.objects.filter(proces_type__id=proces_type.id,
-                                                                    nummer=generiek_nummer,
-                                                                    generiek_resultaat__isnull=True)[0]
+        clean_data['generiek_resultaat'] = Resultaat.objects.get(proces_type__id=proces_type.id,
+                                                                 nummer=generiek_nummer,
+                                                                 generiek_resultaat__isnull=True)
     else:
         clean_data['generiek_resultaat'] = None
 
@@ -116,10 +108,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         file_path = kwargs['file_path']
-        book = open_workbook(file_path)
-        sheet = book.sheet_by_index(0)
-
-        for raw in read_xls_row_to_dict(sheet):
+        with open(file_path, 'rb') as f:
+            file_bin_input = f.read()
+        dataset = tablib.import_set(file_bin_input)
+        for raw in dataset.dict:
             # load to ProcesType
             processtype_data = prepare_procestype(raw)
             # if current nummer already exists - do nothing
