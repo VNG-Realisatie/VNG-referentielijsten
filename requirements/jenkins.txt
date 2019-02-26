@@ -70,4 +70,4 @@ webob==1.8.4              # via webtest
 webtest==2.0.32
 wrapt==1.10.11            # via astroid
 xlrd==1.2.0
-zds-schema==0.20.7
+zds-schema==0.21.3

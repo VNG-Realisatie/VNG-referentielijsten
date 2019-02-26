@@ -45,4 +45,4 @@ unidecode==1.0.23         # via zds-schema
 uritemplate==3.0.0        # via coreapi, drf-yasg
 urllib3==1.24.1           # via requests
 xlrd==1.2.0
-zds-schema==0.20.7
+zds-schema==0.21.3

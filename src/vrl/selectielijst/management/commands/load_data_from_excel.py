@@ -1,15 +1,13 @@
 import re
-from dateutil.relativedelta import relativedelta
-from xlrd import open_workbook
 
 from django.core.management.base import BaseCommand
 
-from vrl.selectielijst.models import ProcesType, Resultaat
+from dateutil.relativedelta import relativedelta
+from xlrd import open_workbook
+
 from vrl.selectielijst.constants import ArchiefNominaties, Procestermijnen
+from vrl.selectielijst.models import ProcesType, Resultaat
 
-
-# python src/manage.pload_data_from_excel /home/anna/Downloads/20170704-ontwerpselectielijst_opsomming_excel_definitief_versie2_0.xls
-# curl -X POST http://127.0.0.1:8081/api/v1/resultaten -H "Content-Type: application/json" --data @/home/anna/Downloads/test_procestermijn_nihil.json
 
 def read_xls_row_to_dict(sheet):
     keys = [sheet.cell(0, col_index).value for col_index in range(sheet.ncols)]

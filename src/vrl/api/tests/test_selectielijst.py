@@ -1,5 +1,4 @@
 from dateutil.relativedelta import relativedelta
-
 from rest_framework import status
 from rest_framework.test import APITestCase
 from zds_schema.tests import reverse
@@ -61,15 +60,19 @@ class ProcesTypeTests(APITestCase):
 class ResultaatTests(APITestCase):
 
     def test_get_resultaat(self):
-        """ test resultaat get api:
-            bewaartermijn is displayed correctly
-            procestermijn_opmerking is displayed correctly """
+        """
+        test resultaat get api:
+        bewaartermijn is displayed correctly
+        procestermijn_opmerking is displayed correctly
+        """
         resultaat = ResultaatFactory.create(
             bewaartermijn=relativedelta(years=10),
             procestermijn_opmerking='5 of 10 jaar'
         )
         url = reverse('resultaat-detail', kwargs={'uuid': resultaat.uuid})
+
         response = self.client.get(url)
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response_data = response.json()
         self.assertEqual(response_data['bewaartermijn'], 'P10Y')
