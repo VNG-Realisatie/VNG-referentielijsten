@@ -37,9 +37,9 @@ def parse_duration(dur_str):
     if num.is_integer():
         rel_delta = relativedelta(**{period: num})
     else:  # non-integer periods are not supported
-        i, d = divmod(num, 1)
-        if d == 0.5 and period == 'years':
-            rel_delta = relativedelta(years=i, months=6)
+        quotient, remainder = divmod(num, 1)
+        if remainder == 0.5 and period == 'years':
+            rel_delta = relativedelta(years=quotient, months=6)
         else:
             rel_delta = relativedelta(**{period: round(num)})
     return rel_delta
@@ -69,7 +69,7 @@ def prepare_resultaat(raw):
     else:
         clean_data['generiek_resultaat'] = None
 
-    clean_data['nummer'] = int(re.match(r".*\.(\d+)", raw['Nr.']).group(1))
+    clean_data['nummer'] = int(raw['Nr.'].rsplit('.')[-1])
     clean_data['naam'] = raw['Resultaat']
     clean_data['omschrijving'] = raw['Omschrijving']
     clean_data['herkomst'] = raw['Herkomst']
@@ -114,14 +114,14 @@ class Command(BaseCommand):
         for raw in dataset.dict:
             # load to ProcesType
             processtype_data = prepare_procestype(raw)
-            # if current nummer already exists - do nothing
-            p, created = ProcesType.objects.get_or_create(nummer=processtype_data['nummer'],
-                                                          defaults=processtype_data)
+            # if current nummer already exists - update it
+            p, created = ProcesType.objects.update_or_create(nummer=processtype_data['nummer'],
+                                                             defaults=processtype_data)
 
             # load to Resultaat
             resultaat_data = prepare_resultaat(raw)
-            # if current resultaat already exists - do nothing
-            r, created = Resultaat.objects.get_or_create(proces_type=resultaat_data['proces_type'],
-                                                         generiek_resultaat=resultaat_data['generiek_resultaat'],
-                                                         nummer=resultaat_data['nummer'],
-                                                         defaults=resultaat_data)
+            # if current resultaat already exists - update it
+            r, created = Resultaat.objects.update_or_create(proces_type=resultaat_data['proces_type'],
+                                                            generiek_resultaat=resultaat_data['generiek_resultaat'],
+                                                            nummer=resultaat_data['nummer'],
+                                                            defaults=resultaat_data)

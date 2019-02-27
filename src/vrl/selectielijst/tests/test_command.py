@@ -1,14 +1,15 @@
 import os
-import tablib
 
 from django.core.management import call_command
-from dateutil.relativedelta import relativedelta
 from django.test import TestCase
 
-from vrl.selectielijst.management.commands.load_data_from_excel \
-    import check_choice, parse_duration, prepare_procestype, prepare_resultaat
-from vrl.selectielijst.models import ProcesType, Resultaat
+import tablib
+from dateutil.relativedelta import relativedelta
 
+from vrl.selectielijst.management.commands.load_data_from_excel import (
+    check_choice, parse_duration, prepare_procestype, prepare_resultaat
+)
+from vrl.selectielijst.models import ProcesType, Resultaat
 
 TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), 'testdata.xls')
 
@@ -200,16 +201,23 @@ class LoadDataFromExcelTest(TestCase):
         """
         test handle method: test if could be created model object after prepare_procestype function
         """
-        proces_type = ProcesType.objects.create(**prepare_procestype(self.raw))
-        self.assert_(True)
+        procestype_data = prepare_procestype(self.raw)
+
+        proces_type = ProcesType.objects.create(**procestype_data)
+
+        self.assertIsNotNone(proces_type.pk)
 
     def test_command_save_resultaat_generiek(self):
         """
         test handle method: if could be created model object after prepare_resultaat function
         """
         proces_type = ProcesType.objects.create(**prepare_procestype(self.raw))
-        generiek_resultaat = Resultaat.objects.create(**prepare_resultaat(self.raw))
-        self.assert_(True)
+        generiek_resultaat_data = prepare_resultaat(self.raw)
+
+        generiek_resultaat = Resultaat.objects.create(**generiek_resultaat_data)
+
+        self.assertIsNotNone(generiek_resultaat.pk)
+        self.assertTrue(generiek_resultaat.generiek)
 
     def test_command_resultaat_specifiek(self):
         """
@@ -217,8 +225,13 @@ class LoadDataFromExcelTest(TestCase):
         """
         proces_type = ProcesType.objects.create(**prepare_procestype(self.raw))
         generiek_resultaat = Resultaat.objects.create(**prepare_resultaat(self.raw))
-        specifiek_resultaat = Resultaat.objects.create(**prepare_resultaat(self.specifiek))
-        self.assert_(True)
+        specifiek_resultaat_data = prepare_resultaat(self.specifiek)
+
+        specifiek_resultaat = Resultaat.objects.create(**specifiek_resultaat_data)
+
+        self.assertIsNotNone(specifiek_resultaat.pk)
+        self.assertTrue(specifiek_resultaat.specifiek)
+        self.assertEqual(specifiek_resultaat.generiek_resultaat, generiek_resultaat)
 
     def test_command_success(self):
         """
@@ -239,7 +252,7 @@ class LoadDataFromExcelTest(TestCase):
 
     def test_command_not_unique_procestype(self):
         """
-        test handle method: if Procestype objects with same nummer exists - do nothing
+        test handle method: if Procestype objects with same nummer exists - update this object
         """
         unique_data = self.raw.copy()
         unique_data['Procestypenaam'] = 'Unique procestype'
@@ -251,14 +264,14 @@ class LoadDataFromExcelTest(TestCase):
         # check that our command didn't overwrite current object
         self.assertEqual(
             ProcesType.objects.get(nummer=proces_type.nummer).naam,
-            'Unique procestype'
+            'Instellen en inrichten organisatie'
         )
 
     def test_command_not_unique_resultaat(self):
         """
         test handle method:
         if Resultaat objects with same (nummer, processtype_id, generiek_resultaat_id)
-        exists - do nothing
+        exists - update this object
         """
         unique_data = self.raw.copy()
         unique_data['Resultaat'] = 'Unique resultaat'
@@ -270,7 +283,7 @@ class LoadDataFromExcelTest(TestCase):
         # check that our command didn't overwrite current object
         self.assertEqual(
             Resultaat.objects.get(proces_type__id=proces_type.id,
-                                   nummer=proces_type.nummer,
-                                   generiek_resultaat__isnull=True).naam,
-            'Unique resultaat'
+                                  nummer=proces_type.nummer,
+                                  generiek_resultaat__isnull=True).naam,
+            'Ingericht'
         )

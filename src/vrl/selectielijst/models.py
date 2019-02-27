@@ -3,6 +3,7 @@ import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
 from relativedeltafield import RelativeDeltaField
 
 from .constants import ArchiefNominaties, Procestermijnen
@@ -99,7 +100,7 @@ class Resultaat(models.Model):
     heffen_belastingen = models.BooleanField(_("heffen belastingen etc."), default=False)
     alle_taakgebieden = models.BooleanField(_("alle taakgebieden"), default=False)
     procestermijn_opmerking = models.CharField(
-        _("procestermijn opmerking"), max_length=20, null=True, blank=True,
+        _("procestermijn opmerking"), max_length=20, blank=True,
         help_text=_("Voorbeeld: '25 jaar', '30 jaar, '5 of 10 jaar'")
     )
 
