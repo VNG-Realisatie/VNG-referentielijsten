@@ -3,12 +3,6 @@ from django.utils.translation import ugettext_lazy as _
 from djchoices import ChoiceItem, DjangoChoices
 
 
-class ArchiefNominaties(DjangoChoices):
-    bewaren = ChoiceItem('bewaren', _("Bewaren"))
-    vernietigen = ChoiceItem('vernietigen', _("Vernietigen"))
-    bewaren_met_uitzondering = ChoiceItem('bewaren_met_uitzondering', _("Bewaren met uitzondering van zie toelichting"))
-
-
 class Procestermijnen(DjangoChoices):
     nihil = ChoiceItem(
         'nihil', _("Nihil"),

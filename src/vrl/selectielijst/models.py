@@ -5,8 +5,9 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from relativedeltafield import RelativeDeltaField
+from zds_schema.constants import Archiefnominatie
 
-from .constants import ArchiefNominaties, Procestermijnen
+from .constants import Procestermijnen
 from .query import ResultaatQuerySet
 
 
@@ -73,7 +74,7 @@ class Resultaat(models.Model):
         _("herkomst"), max_length=200,
         help_text=_("Voorbeeld: 'Risicoanalyse', 'Systeemanalyse' of verwijzing naar Wet- en regelgeving")
     )
-    waardering = models.CharField(_("waardering"), max_length=50, choices=ArchiefNominaties.choices)
+    waardering = models.CharField(_("waardering"), max_length=50, choices=Archiefnominatie.choices)
     procestermijn = models.CharField(_("procestermijn"), max_length=50, choices=Procestermijnen.choices, blank=True)
     bewaartermijn = RelativeDeltaField(_("bewaartermijn"), null=True, blank=True)
     toelichting = models.TextField(_("toelichting"), blank=True)

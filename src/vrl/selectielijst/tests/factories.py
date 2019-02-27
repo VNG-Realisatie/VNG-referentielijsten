@@ -1,7 +1,6 @@
 import factory
 import factory.fuzzy
-
-from ..constants import ArchiefNominaties
+from zds_schema.constants import Archiefnominatie
 
 
 class ProcesTypeFactory(factory.django.DjangoModelFactory):
@@ -21,7 +20,7 @@ class ResultaatFactory(factory.django.DjangoModelFactory):
     nummer = factory.Sequence(lambda n: n)
     naam = factory.fuzzy.FuzzyText(length=40)
     herkomst = factory.fuzzy.FuzzyChoice(['Risicoanalyse', 'Systeemanalyse'])
-    waardering = factory.fuzzy.FuzzyChoice(ArchiefNominaties.values)
+    waardering = factory.fuzzy.FuzzyChoice(Archiefnominatie.values)
 
     class Meta:
         model = 'selectielijst.Resultaat'

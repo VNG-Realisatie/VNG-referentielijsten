@@ -54,17 +54,36 @@ class LoadDataFromExcelTest(TestCase):
 
     def test_check_choice_fail(self):
         """
-        test check_choice function: Input string doesn't contain choice label
+        test check_choice function: Input string doesn't contain choice label or value
         """
-        self.assertRaises(Exception, check_choice, ('test', {'test' 'foo'}))
+        self.assertRaises(Exception, check_choice, ('some data', {'nihil': 'Nihil'}))
 
-    def test_check_choice_success(self):
+    def test_check_choice_success_label(self):
         """
         test check_choice function: Input string contains choice label
         """
+        choice = check_choice(
+            "De bestaans- of geldigheidsduur van het procesobject",
+            {'bestaansduur_procesobject': "De bestaans- of geldigheidsduur van het procesobject."}
+        )
+
         self.assertEqual(
-            check_choice('test label', {'col_value': 'test label'}),
-            'col_value'
+            choice,
+            'bestaansduur_procesobject'
+        )
+
+    def test_check_choice_success_value(self):
+        """
+        test check_choice function: Input string contains choice value
+        """
+        choice = check_choice(
+            "Bewaren",
+            {'blijvend_bewaren': "Het zaakdossier moet bewaard blijven"}
+        )
+
+        self.assertEqual(
+            choice,
+            'blijvend_bewaren'
         )
 
     def test_check_choice_empty(self):
@@ -72,7 +91,7 @@ class LoadDataFromExcelTest(TestCase):
         test check_choice function: Input string is empty
         """
         self.assertEqual(
-            check_choice('', {'col_value': 'test label'}),
+            check_choice('', {'nihil': 'Nihil'}),
             ''
         )
 
@@ -261,7 +280,7 @@ class LoadDataFromExcelTest(TestCase):
 
         call_command('load_data_from_excel', TESTDATA_FILENAME)
 
-        # check that our command didn't overwrite current object
+        # check that our command overwrote current object
         self.assertEqual(
             ProcesType.objects.get(nummer=proces_type.nummer).naam,
             'Instellen en inrichten organisatie'
@@ -280,7 +299,7 @@ class LoadDataFromExcelTest(TestCase):
 
         call_command('load_data_from_excel', TESTDATA_FILENAME)
 
-        # check that our command didn't overwrite current object
+        # check that our command overwrote current object
         self.assertEqual(
             Resultaat.objects.get(proces_type__id=proces_type.id,
                                   nummer=proces_type.nummer,

@@ -4,8 +4,9 @@ from django.core.management.base import BaseCommand
 
 import tablib
 from dateutil.relativedelta import relativedelta
+from zds_schema.constants import Archiefnominatie
 
-from vrl.selectielijst.constants import ArchiefNominaties, Procestermijnen
+from vrl.selectielijst.constants import Procestermijnen
 from vrl.selectielijst.models import ProcesType, Resultaat
 
 
@@ -13,7 +14,7 @@ def check_choice(string, choice_dict):
     if not string:
         return ''
     for k, v in choice_dict.items():
-        if str(v)[:25] in string:
+        if str(v)[:25] in string or string.lower() in k:
             return k
     raise Exception('"{}" is not found in choices'.format(string))
 
@@ -73,7 +74,10 @@ def prepare_resultaat(raw):
     clean_data['naam'] = raw['Resultaat']
     clean_data['omschrijving'] = raw['Omschrijving']
     clean_data['herkomst'] = raw['Herkomst']
-    clean_data['waardering'] = check_choice(raw['Waardering'], ArchiefNominaties.labels)
+
+    if raw['Waardering'] == 'Bewaren met uitzondering van zie toelichting':
+        raw['Waardering'] = 'Bewaren'
+    clean_data['waardering'] = check_choice(raw['Waardering'], Archiefnominatie.labels)
 
     if ',' in raw['Procestermijn'].replace('(', ','):
         opmerking, procestermijn = raw['Procestermijn'].replace('(', ',').split(',')
