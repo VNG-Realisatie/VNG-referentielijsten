@@ -3,11 +3,6 @@ from django.utils.translation import ugettext_lazy as _
 from djchoices import ChoiceItem, DjangoChoices
 
 
-class ArchiefNominaties(DjangoChoices):
-    bewaren = ChoiceItem('bewaren', _("Bewaren"))
-    vernietigen = ChoiceItem('vernietigen', _("Vernietigen"))
-
-
 class Procestermijnen(DjangoChoices):
     nihil = ChoiceItem(
         'nihil', _("Nihil"),
@@ -31,7 +26,7 @@ class Procestermijnen(DjangoChoices):
     )
     vast_te_leggen_datum = ChoiceItem(
         'vast_te_leggen_datum',
-        _("Een tijdens het proces vast te leggen datum waarop de geldigheid van "
+        _("De tijdens het proces vast te leggen datum waarop de geldigheid van "
           "het procesobject komt te vervallen. "),
         extra_context=_("Tijdens de procesuitvoering wordt de datum bepaald "
                         "wanneer het procesobject zijn geldigheid zal verliezen "
@@ -46,3 +41,5 @@ class Procestermijnen(DjangoChoices):
                        "bij de categorie en kan ook in het verleden liggen, "
                        "bijvoorbeeld op basis van een geboortedatum.")
     )
+
+

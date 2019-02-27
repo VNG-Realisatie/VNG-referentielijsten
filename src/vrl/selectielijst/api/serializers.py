@@ -62,6 +62,7 @@ class ResultaatSerializer(serializers.ModelSerializer):
             'vhrosv',
             'heffen_belastingen',
             'alle_taakgebieden',
+            'procestermijn_opmerking',
         )
         extra_kwargs = {
             'url': {

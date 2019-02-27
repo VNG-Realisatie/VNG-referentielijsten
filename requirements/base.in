@@ -3,13 +3,15 @@ psycopg2
 python-dotenv
 pytz
 raven
+tablib
 
 Django
 django-axes
 django-choices
 django-cors-middleware
+django-relativedelta
 
 djangorestframework
 djangorestframework-camel-case
 drf-yasg
-zds-schema==0.20.7
+zds-schema==0.21.3
