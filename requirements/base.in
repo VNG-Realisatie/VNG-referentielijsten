@@ -5,13 +5,10 @@ pytz
 raven
 tablib
 
-Django
+Django==2.0.13
 django-axes
 django-choices
-django-cors-middleware
 django-relativedelta
 
 djangorestframework
-djangorestframework-camel-case
-drf-yasg
-zds-schema==0.21.3
+zds-schema==0.21.5

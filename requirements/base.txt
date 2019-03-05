@@ -13,17 +13,16 @@ defusedxml==0.5.0         # via odfpy
 django-appconf==1.0.2     # via django-axes
 django-axes==4.5.0
 django-choices==1.6.1
-django-cors-middleware==1.3.1
 django-filter==2.0.0      # via zds-schema
 django-ipware==2.1.0      # via django-axes
 django-relativedelta==1.0.4
-django==2.1.4
-djangorestframework-camel-case==0.2.0
+django==2.0.13
+djangorestframework-camel-case==0.2.0  # via zds-schema
 djangorestframework==3.9.0
 drf-nested-routers==0.91  # via zds-schema
-drf-yasg==1.12.0
+drf-yasg==1.12.0          # via zds-schema
 et-xmlfile==1.0.1         # via openpyxl
-gemma-zds-client==0.8.1   # via zds-schema
+gemma-zds-client==0.9.3   # via zds-schema
 idna==2.8                 # via requests
 inflection==0.3.1         # via drf-yasg
 iso-639==0.4.5            # via zds-schema
@@ -53,4 +52,4 @@ uritemplate==3.0.0        # via coreapi, drf-yasg
 urllib3==1.24.1           # via requests
 xlrd==1.2.0               # via tablib
 xlwt==1.3.0               # via tablib
-zds-schema==0.21.3
+zds-schema==0.21.5
