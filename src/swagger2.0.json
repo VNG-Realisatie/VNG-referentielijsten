@@ -8,7 +8,8 @@
             "email": "support@maykinmedia.nl"
         },
         "license": {
-            "name": "EUPL 1.2"
+            "name": "EUPL 1.2",
+            "url": "https://opensource.org/licenses/EUPL-1.2"
         },
         "version": "1.0.0-alpha"
     },
@@ -1436,14 +1437,14 @@
                     "title": "Procestypenaam",
                     "description": "Benaming van het procestype",
                     "type": "string",
-                    "maxLength": 40,
+                    "maxLength": 100,
                     "minLength": 1
                 },
                 "omschrijving": {
                     "title": "Procestypeomschrijving",
                     "description": "Omschrijving van het procestype",
                     "type": "string",
-                    "maxLength": 255,
+                    "maxLength": 300,
                     "minLength": 1
                 },
                 "toelichting": {
@@ -1550,26 +1551,26 @@
                     "title": "Omschrijving",
                     "description": "Omschrijving van het specifieke resultaat",
                     "type": "string",
-                    "maxLength": 100
+                    "maxLength": 150
                 },
                 "herkomst": {
                     "title": "Herkomst",
                     "description": "Voorbeeld: 'Risicoanalyse', 'Systeemanalyse' of verwijzing naar Wet- en regelgeving",
                     "type": "string",
-                    "maxLength": 100,
+                    "maxLength": 200,
                     "minLength": 1
                 },
                 "waardering": {
                     "title": "Waardering",
                     "type": "string",
                     "enum": [
-                        "bewaren",
+                        "blijvend_bewaren",
                         "vernietigen"
                     ]
                 },
                 "procestermijn": {
                     "title": "Procestermijn",
-                    "description": "De mapping van waarden naar weergave is als volgt:\n\n* `nihil` - Nihil\n* `bestaansduur_procesobject` - De bestaans- of geldigheidsduur van het procesobject.\n* `ingeschatte_bestaansduur_procesobject` - De ingeschatte maximale bestaans- of geldigheidsduur van het procesobject.\n* `vast_te_leggen_datum` - Een tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. \n* `samengevoegd_met_bewaartermijn` - De procestermijn is samengevoegd met de bewaartermijn.",
+                    "description": "De mapping van waarden naar weergave is als volgt:\n\n* `nihil` - Nihil\n* `bestaansduur_procesobject` - De bestaans- of geldigheidsduur van het procesobject.\n* `ingeschatte_bestaansduur_procesobject` - De ingeschatte maximale bestaans- of geldigheidsduur van het procesobject.\n* `vast_te_leggen_datum` - De tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. \n* `samengevoegd_met_bewaartermijn` - De procestermijn is samengevoegd met de bewaartermijn.",
                     "type": "string",
                     "enum": [
                         "nihil",
@@ -1649,6 +1650,12 @@
                 "alleTaakgebieden": {
                     "title": "Alle taakgebieden",
                     "type": "boolean"
+                },
+                "procestermijnOpmerking": {
+                    "title": "Procestermijn opmerking",
+                    "description": "Voorbeeld: '25 jaar', '30 jaar, '5 of 10 jaar'",
+                    "type": "string",
+                    "maxLength": 20
                 }
             }
         },

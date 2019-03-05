@@ -59,7 +59,7 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/o
 * `nihil` - Nihil
 * `bestaansduur_procesobject` - De bestaans- of geldigheidsduur van het procesobject.
 * `ingeschatte_bestaansduur_procesobject` - De ingeschatte maximale bestaans- of geldigheidsduur van het procesobject.
-* `vast_te_leggen_datum` - Een tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. 
+* `vast_te_leggen_datum` - De tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. 
 * `samengevoegd_met_bewaartermijn` - De procestermijn is samengevoegd met de bewaartermijn. | string | nee | C​R​U​D |
 | procestermijnWeergave |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
 | bewaartermijn |  | string | nee | C​R​U​D |
@@ -78,6 +78,7 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/o
 | vhrosv |  | boolean | nee | C​R​U​D |
 | heffenBelastingen |  | boolean | nee | C​R​U​D |
 | alleTaakgebieden |  | boolean | nee | C​R​U​D |
+| procestermijnOpmerking | Voorbeeld: &#39;25 jaar&#39;, &#39;30 jaar, &#39;5 of 10 jaar&#39; | string | nee | C​R​U​D |
 
 
 * Create, Read, Update, Delete
