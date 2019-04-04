@@ -8,6 +8,7 @@ tablib
 Django==2.0.13
 django-axes
 django-choices
+django-cors-middleware
 django-relativedelta
 
 djangorestframework
