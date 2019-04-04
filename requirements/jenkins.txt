@@ -70,7 +70,7 @@ unicodecsv==0.14.1
 unidecode==1.0.23
 uritemplate==3.0.0
 urllib3==1.24.1
-vng-api-common==0.35.10
+vng-api-common==0.36.0
 waitress==1.1.0           # via webtest
 webob==1.8.4              # via webtest
 webtest==2.0.32

@@ -48,8 +48,8 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/o
 | procesType |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
 | nummer | Nummer van het resultaat. Dit wordt samengesteld met het procestype en generiek resultaat indien van toepassing. | integer | ja | C​R​U​D |
 | volledigNummer |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
-| generiek |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
-| specifiek |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| generiek |  | boolean | nee | ~~C~~​R​~~U~~​~~D~~ |
+| specifiek |  | boolean | nee | ~~C~~​R​~~U~~​~~D~~ |
 | naam | Benaming van het procestype | string | ja | C​R​U​D |
 | omschrijving | Omschrijving van het specifieke resultaat | string | nee | C​R​U​D |
 | herkomst | Voorbeeld: &#39;Risicoanalyse&#39;, &#39;Systeemanalyse&#39; of verwijzing naar Wet- en regelgeving | string | ja | C​R​U​D |

@@ -1309,11 +1309,11 @@ components:
           readOnly: true
         generiek:
           title: Generiek
-          type: string
+          type: boolean
           readOnly: true
         specifiek:
           title: Specifiek
-          type: string
+          type: boolean
           readOnly: true
         naam:
           title: Naam

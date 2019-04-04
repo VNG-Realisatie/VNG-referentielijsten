@@ -11,4 +11,4 @@ django-choices
 django-relativedelta
 
 djangorestframework
-vng-api-common
+vng-api-common==0.36.0
