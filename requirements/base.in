@@ -11,4 +11,4 @@ django-choices
 django-relativedelta
 
 djangorestframework
-zds-schema==0.21.5
+vng-api-common

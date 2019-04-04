@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     # External applications.
     'axes',
     'corsheaders',
-    'zds_schema',  # before drf_yasg to override the management command
+    'vng_api_common',  # before drf_yasg to override the management command
     'drf_yasg',
     'rest_framework',
 
@@ -77,7 +77,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'corsheaders.middleware.CorsMiddleware',
-    'zds_schema.middleware.APIVersionHeaderMiddleware',
+    'vng_api_common.middleware.APIVersionHeaderMiddleware',
 ]
 
 ROOT_URLCONF = 'vrl.urls'

@@ -22,7 +22,7 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     path('api/', include('vrl.api.urls')),
-    path('ref/', include('zds_schema.urls')),
+    path('ref/', include('vng_api_common.urls')),
 
     # Simply show the master template.
     path('', RedirectView.as_view(

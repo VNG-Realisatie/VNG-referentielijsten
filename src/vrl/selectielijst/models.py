@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from relativedeltafield import RelativeDeltaField
-from zds_schema.constants import Archiefnominatie
+from vng_api_common.constants import Archiefnominatie
 
 from .constants import Procestermijnen
 from .query import ResultaatQuerySet

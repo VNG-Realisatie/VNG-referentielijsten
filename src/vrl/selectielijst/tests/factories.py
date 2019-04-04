@@ -1,6 +1,6 @@
 import factory
 import factory.fuzzy
-from zds_schema.constants import Archiefnominatie
+from vng_api_common.constants import Archiefnominatie
 
 
 class ProcesTypeFactory(factory.django.DjangoModelFactory):

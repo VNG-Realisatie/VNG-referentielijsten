@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
-from zds_schema.tests import reverse
+from vng_api_common.tests import reverse
 
 from vrl.datamodel.tests.factories import CommunicatieKanaalFactory
 

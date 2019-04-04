@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 
 import tablib
 from dateutil.relativedelta import relativedelta
-from zds_schema.constants import Archiefnominatie
+from vng_api_common.constants import Archiefnominatie
 
 from vrl.selectielijst.constants import Procestermijnen
 from vrl.selectielijst.models import ProcesType, Resultaat

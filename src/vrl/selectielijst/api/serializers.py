@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from zds_schema.serializers import add_choice_values_help_text
+from vng_api_common.serializers import add_choice_values_help_text
 
 from ..constants import Procestermijnen
 from ..models import ProcesType, Resultaat
