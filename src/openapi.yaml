@@ -1363,6 +1363,7 @@ components:
         bewaartermijn:
           title: Bewaartermijn
           type: string
+          format: duration
           nullable: true
         toelichting:
           title: Toelichting
