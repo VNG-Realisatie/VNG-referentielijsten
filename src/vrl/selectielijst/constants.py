@@ -41,5 +41,3 @@ class Procestermijnen(DjangoChoices):
                        "bij de categorie en kan ook in het verleden liggen, "
                        "bijvoorbeeld op basis van een geboortedatum.")
     )
-
-

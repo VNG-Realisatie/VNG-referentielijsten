@@ -41,7 +41,7 @@
                     {
                         "name": "page",
                         "in": "query",
-                        "description": "A page number within the paginated result set.",
+                        "description": "Een pagina binnen de gepagineerde set resultaten.",
                         "required": false,
                         "type": "integer"
                     }
@@ -985,7 +985,7 @@
                     {
                         "name": "procesType",
                         "in": "query",
-                        "description": "URL to the related resource",
+                        "description": "URL naar de/het gerelateerde proces_type",
                         "required": false,
                         "type": "string",
                         "format": "uri"
@@ -993,7 +993,7 @@
                     {
                         "name": "page",
                         "in": "query",
-                        "description": "A page number within the paginated result set.",
+                        "description": "Een pagina binnen de gepagineerde set resultaten.",
                         "required": false,
                         "type": "integer"
                     }
@@ -1695,7 +1695,7 @@
                 "status",
                 "detail",
                 "instance",
-                "invalid-params"
+                "invalidParams"
             ],
             "type": "object",
             "properties": {
@@ -1733,7 +1733,7 @@
                     "type": "string",
                     "minLength": 1
                 },
-                "invalid-params": {
+                "invalidParams": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/FieldValidationError"

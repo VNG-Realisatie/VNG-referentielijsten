@@ -12,4 +12,4 @@ django-cors-middleware
 django-relativedelta
 
 djangorestframework
-vng-api-common==0.36.0
+vng-api-common
