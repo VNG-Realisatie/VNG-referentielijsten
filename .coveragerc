@@ -1,0 +1,15 @@
+# .coveragerc to control coverage.py
+[run]
+branch = True
+source = src
+omit =
+    */conf/*
+    */migrations/*
+    */tests/*
+
+[report]
+omit =
+    */manage.py
+    */wsgi.py
+    */urls.py
+    */accounts/backends.py
