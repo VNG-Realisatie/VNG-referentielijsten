@@ -5,13 +5,13 @@ from vng_api_common.constants import Archiefnominatie
 
 class ProcesTypeFactory(factory.django.DjangoModelFactory):
     nummer = factory.Sequence(lambda n: n)
-    naam = factory.Faker('bs')
-    omschrijving = factory.Faker('text')
-    toelichting = factory.Faker('text')
-    procesobject = factory.Faker('bs')
+    naam = factory.Faker("bs")
+    omschrijving = factory.Faker("text")
+    toelichting = factory.Faker("text")
+    procesobject = factory.Faker("bs")
 
     class Meta:
-        model = 'selectielijst.ProcesType'
+        model = "selectielijst.ProcesType"
 
 
 class ResultaatFactory(factory.django.DjangoModelFactory):
@@ -19,8 +19,8 @@ class ResultaatFactory(factory.django.DjangoModelFactory):
 
     nummer = factory.Sequence(lambda n: n)
     naam = factory.fuzzy.FuzzyText(length=40)
-    herkomst = factory.fuzzy.FuzzyChoice(['Risicoanalyse', 'Systeemanalyse'])
+    herkomst = factory.fuzzy.FuzzyChoice(["Risicoanalyse", "Systeemanalyse"])
     waardering = factory.fuzzy.FuzzyChoice(Archiefnominatie.values)
 
     class Meta:
-        model = 'selectielijst.Resultaat'
+        model = "selectielijst.Resultaat"

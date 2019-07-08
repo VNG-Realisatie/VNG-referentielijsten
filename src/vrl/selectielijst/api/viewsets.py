@@ -16,9 +16,10 @@ class ProcesTypeViewSet(viewsets.ReadOnlyModelViewSet):
     Zie https://vng.nl/files/vng/20170706-selectielijst-gemeenten-intergemeentelijke-organen-2017.pdf
     voor de bron van de inhoud.
     """
-    queryset = ProcesType.objects.order_by('nummer')
+
+    queryset = ProcesType.objects.order_by("nummer")
     serializer_class = ProcesTypeSerializer
-    lookup_field = 'uuid'
+    lookup_field = "uuid"
     pagination_class = None
 
 
@@ -34,7 +35,8 @@ class ResultaatViewSet(viewsets.ReadOnlyModelViewSet):
     Zie https://vng.nl/files/vng/20170706-selectielijst-gemeenten-intergemeentelijke-organen-2017.pdf
     voor de bron van de inhoud.
     """
+
     queryset = Resultaat.objects.tree_order()
     serializer_class = ResultaatSerializer
-    lookup_field = 'uuid'
+    lookup_field = "uuid"
     filterset_class = ResultaatFilter

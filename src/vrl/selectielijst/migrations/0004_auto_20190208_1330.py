@@ -5,14 +5,16 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('selectielijst', '0003_auto_20190208_1325'),
-    ]
+    dependencies = [("selectielijst", "0003_auto_20190208_1325")]
 
     operations = [
         migrations.AlterField(
-            model_name='resultaat',
-            name='naam',
-            field=models.CharField(help_text='Benaming van het procestype', max_length=40, verbose_name='naam'),
-        ),
+            model_name="resultaat",
+            name="naam",
+            field=models.CharField(
+                help_text="Benaming van het procestype",
+                max_length=40,
+                verbose_name="naam",
+            ),
+        )
     ]

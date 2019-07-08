@@ -6,4 +6,4 @@ from ..models import Resultaat
 class ResultaatFilter(FilterSet):
     class Meta:
         model = Resultaat
-        fields = ('proces_type',)
+        fields = ("proces_type",)

@@ -5,14 +5,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('selectielijst', '0007_auto_20190222_1126'),
-    ]
+    dependencies = [("selectielijst", "0007_auto_20190222_1126")]
 
     operations = [
         migrations.AddField(
-            model_name='resultaat',
-            name='procestermijn_opmerking',
-            field=models.CharField(blank=True, help_text="Voorbeeld: '25 jaar', '30 jaar, '5 of 10 jaar'", max_length=20, null=True, verbose_name='procestermijn opmerking'),
-        ),
+            model_name="resultaat",
+            name="procestermijn_opmerking",
+            field=models.CharField(
+                blank=True,
+                help_text="Voorbeeld: '25 jaar', '30 jaar, '5 of 10 jaar'",
+                max_length=20,
+                null=True,
+                verbose_name="procestermijn opmerking",
+            ),
+        )
     ]

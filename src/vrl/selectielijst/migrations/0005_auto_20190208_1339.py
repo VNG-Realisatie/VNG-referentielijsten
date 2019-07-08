@@ -5,14 +5,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('selectielijst', '0004_auto_20190208_1330'),
-    ]
+    dependencies = [("selectielijst", "0004_auto_20190208_1330")]
 
     operations = [
         migrations.AlterField(
-            model_name='resultaat',
-            name='nummer',
-            field=models.PositiveSmallIntegerField(help_text='Nummer van het resultaat. Dit wordt samengesteld met het procestype en generiek resultaat indien van toepassing.', verbose_name='nummer'),
-        ),
+            model_name="resultaat",
+            name="nummer",
+            field=models.PositiveSmallIntegerField(
+                help_text="Nummer van het resultaat. Dit wordt samengesteld met het procestype en generiek resultaat indien van toepassing.",
+                verbose_name="nummer",
+            ),
+        )
     ]

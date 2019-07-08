@@ -5,14 +5,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('selectielijst', '0006_auto_20190222_0954'),
-    ]
+    dependencies = [("selectielijst", "0006_auto_20190222_0954")]
 
     operations = [
         migrations.AlterField(
-            model_name='resultaat',
-            name='waardering',
-            field=models.CharField(choices=[('bewaren', 'Bewaren'), ('vernietigen', 'Vernietigen'), ('bewaren_met_uitzondering', 'Bewaren met uitzondering van zie toelichting')], max_length=50, verbose_name='waardering'),
-        ),
+            model_name="resultaat",
+            name="waardering",
+            field=models.CharField(
+                choices=[
+                    ("bewaren", "Bewaren"),
+                    ("vernietigen", "Vernietigen"),
+                    (
+                        "bewaren_met_uitzondering",
+                        "Bewaren met uitzondering van zie toelichting",
+                    ),
+                ],
+                max_length=50,
+                verbose_name="waardering",
+            ),
+        )
     ]

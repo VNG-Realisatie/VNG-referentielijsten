@@ -6,44 +6,95 @@ import relativedeltafield
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('selectielijst', '0005_auto_20190208_1339'),
-    ]
+    dependencies = [("selectielijst", "0005_auto_20190208_1339")]
 
     operations = [
         migrations.AlterField(
-            model_name='procestype',
-            name='naam',
-            field=models.CharField(help_text='Benaming van het procestype', max_length=100, verbose_name='procestypenaam'),
+            model_name="procestype",
+            name="naam",
+            field=models.CharField(
+                help_text="Benaming van het procestype",
+                max_length=100,
+                verbose_name="procestypenaam",
+            ),
         ),
         migrations.AlterField(
-            model_name='procestype',
-            name='omschrijving',
-            field=models.CharField(help_text='Omschrijving van het procestype', max_length=300, verbose_name='procestypeomschrijving'),
+            model_name="procestype",
+            name="omschrijving",
+            field=models.CharField(
+                help_text="Omschrijving van het procestype",
+                max_length=300,
+                verbose_name="procestypeomschrijving",
+            ),
         ),
         migrations.AlterField(
-            model_name='resultaat',
-            name='bewaartermijn',
-            field=relativedeltafield.RelativeDeltaField(blank=True, null=True, verbose_name='bewaartermijn'),
+            model_name="resultaat",
+            name="bewaartermijn",
+            field=relativedeltafield.RelativeDeltaField(
+                blank=True, null=True, verbose_name="bewaartermijn"
+            ),
         ),
         migrations.AlterField(
-            model_name='resultaat',
-            name='herkomst',
-            field=models.CharField(help_text="Voorbeeld: 'Risicoanalyse', 'Systeemanalyse' of verwijzing naar Wet- en regelgeving", max_length=200, verbose_name='herkomst'),
+            model_name="resultaat",
+            name="herkomst",
+            field=models.CharField(
+                help_text="Voorbeeld: 'Risicoanalyse', 'Systeemanalyse' of verwijzing naar Wet- en regelgeving",
+                max_length=200,
+                verbose_name="herkomst",
+            ),
         ),
         migrations.AlterField(
-            model_name='resultaat',
-            name='omschrijving',
-            field=models.CharField(blank=True, help_text='Omschrijving van het specifieke resultaat', max_length=150, verbose_name='omschrijving'),
+            model_name="resultaat",
+            name="omschrijving",
+            field=models.CharField(
+                blank=True,
+                help_text="Omschrijving van het specifieke resultaat",
+                max_length=150,
+                verbose_name="omschrijving",
+            ),
         ),
         migrations.AlterField(
-            model_name='resultaat',
-            name='procestermijn',
-            field=models.CharField(blank=True, choices=[('nihil', 'Nihil'), ('bestaansduur_procesobject', 'De bestaans- of geldigheidsduur van het procesobject.'), ('ingeschatte_bestaansduur_procesobject', 'De ingeschatte maximale bestaans- of geldigheidsduur van het procesobject.'), ('vast_te_leggen_datum', 'De tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. '), ('samengevoegd_met_bewaartermijn', 'De procestermijn is samengevoegd met de bewaartermijn.')], max_length=50, verbose_name='procestermijn'),
+            model_name="resultaat",
+            name="procestermijn",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("nihil", "Nihil"),
+                    (
+                        "bestaansduur_procesobject",
+                        "De bestaans- of geldigheidsduur van het procesobject.",
+                    ),
+                    (
+                        "ingeschatte_bestaansduur_procesobject",
+                        "De ingeschatte maximale bestaans- of geldigheidsduur van het procesobject.",
+                    ),
+                    (
+                        "vast_te_leggen_datum",
+                        "De tijdens het proces vast te leggen datum waarop de geldigheid van het procesobject komt te vervallen. ",
+                    ),
+                    (
+                        "samengevoegd_met_bewaartermijn",
+                        "De procestermijn is samengevoegd met de bewaartermijn.",
+                    ),
+                ],
+                max_length=50,
+                verbose_name="procestermijn",
+            ),
         ),
         migrations.AlterField(
-            model_name='resultaat',
-            name='waardering',
-            field=models.CharField(choices=[('bewaren', 'Bewaren'), ('vernietigen', 'Vernietigen'), ('bewaren_met_uitzondering', 'Bewaren met uitzondering van zie toelichting')], max_length=20, verbose_name='waardering'),
+            model_name="resultaat",
+            name="waardering",
+            field=models.CharField(
+                choices=[
+                    ("bewaren", "Bewaren"),
+                    ("vernietigen", "Vernietigen"),
+                    (
+                        "bewaren_met_uitzondering",
+                        "Bewaren met uitzondering van zie toelichting",
+                    ),
+                ],
+                max_length=20,
+                verbose_name="waardering",
+            ),
         ),
     ]

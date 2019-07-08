@@ -6,23 +6,58 @@ import uuid
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('datamodel', '0001_initial'),
-    ]
+    dependencies = [("datamodel", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='ResultaattypeOmschrijvingGeneriek',
+            name="ResultaattypeOmschrijvingGeneriek",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('uuid', models.UUIDField(default=uuid.uuid4, help_text='Unieke resource identifier (UUID4)', unique=True)),
-                ('omschrijving', models.CharField(help_text='Algemeen gehanteerde omschrijvingen van de aard van het resultaat van zaken', max_length=20, verbose_name='omschrijving')),
-                ('definitie', models.TextField(help_text='Nauwkeurige beschrijving van het generieke type resultaat.', max_length=255, verbose_name='definitie')),
-                ('opmerking', models.TextField(blank=True, help_text='Zinvolle toelichting bij de waarde van de generieke omschrijving van het resultaat.', max_length=255, verbose_name='opmerking')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "uuid",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        help_text="Unieke resource identifier (UUID4)",
+                        unique=True,
+                    ),
+                ),
+                (
+                    "omschrijving",
+                    models.CharField(
+                        help_text="Algemeen gehanteerde omschrijvingen van de aard van het resultaat van zaken",
+                        max_length=20,
+                        verbose_name="omschrijving",
+                    ),
+                ),
+                (
+                    "definitie",
+                    models.TextField(
+                        help_text="Nauwkeurige beschrijving van het generieke type resultaat.",
+                        max_length=255,
+                        verbose_name="definitie",
+                    ),
+                ),
+                (
+                    "opmerking",
+                    models.TextField(
+                        blank=True,
+                        help_text="Zinvolle toelichting bij de waarde van de generieke omschrijving van het resultaat.",
+                        max_length=255,
+                        verbose_name="opmerking",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'generieke omschrijving resultaattype',
-                'verbose_name_plural': 'generieke omschrijvingen resultaattype',
+                "verbose_name": "generieke omschrijving resultaattype",
+                "verbose_name_plural": "generieke omschrijvingen resultaattype",
             },
-        ),
+        )
     ]

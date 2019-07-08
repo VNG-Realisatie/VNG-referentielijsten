@@ -5,14 +5,16 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('selectielijst', '0001_initial'),
-    ]
+    dependencies = [("selectielijst", "0001_initial")]
 
     operations = [
         migrations.AlterField(
-            model_name='procestype',
-            name='omschrijving',
-            field=models.CharField(help_text='Omschrijving van het procestype', max_length=255, verbose_name='procestypeomschrijving'),
-        ),
+            model_name="procestype",
+            name="omschrijving",
+            field=models.CharField(
+                help_text="Omschrijving van het procestype",
+                max_length=255,
+                verbose_name="procestypeomschrijving",
+            ),
+        )
     ]

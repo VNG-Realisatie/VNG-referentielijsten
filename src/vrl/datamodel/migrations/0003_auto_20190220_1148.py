@@ -5,13 +5,14 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('datamodel', '0002_resultaattypeomschrijvinggeneriek'),
-    ]
+    dependencies = [("datamodel", "0002_resultaattypeomschrijvinggeneriek")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='resultaattypeomschrijvinggeneriek',
-            options={'verbose_name': 'generieke resultaattypeomschrijving', 'verbose_name_plural': 'generieke resultaattypeomschrijvingen'},
-        ),
+            name="resultaattypeomschrijvinggeneriek",
+            options={
+                "verbose_name": "generieke resultaattypeomschrijving",
+                "verbose_name_plural": "generieke resultaattypeomschrijvingen",
+            },
+        )
     ]
