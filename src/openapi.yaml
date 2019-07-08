@@ -1,16 +1,27 @@
 openapi: 3.0.0
 info:
-  title: Referentielijsten API
-  description: Een API om referentielijstwaarden te benaderen
+  title: Referentielijsten & Selectielijst API
+  description: "\nEen API om referentielijstwaarden en de gemeentelijke selectielijst\
+    \ te\nbenaderen.\n\n## Selectielijst\n\nDe [Gemeentelijke Selectielijst](https://vng.nl/selectielijst)\
+    \ is relevant\nin het kader van archivering.\n\n**Zaakgericht werken**\n\nBij\
+    \ het configureren van zaaktypes (en resultaattypes) in de catalogus API\nrefereren\
+    \ een aantal resources naar resources binnen de Selectielijst API. Het\ngaat dan\
+    \ om de `ProcesType` en `Resultaat` resources.\n\n## Referentielijsten\n\nReferentielijsten\
+    \ bevat een standaardset aan waarden. Deze waarden zijn net t\xE9\ndynamisch om\
+    \ in een enum opgenomen te worden, maar er is wel behoefte om deze\nlandelijk\
+    \ te standaardiseren. Een voorbeeld hiervan is de set aan mogelijke\ncommunicatiekanalen.\n\
+    \n## Autorisatie\n\nDeze APIs zijn alleen-lezen, en behoeven geen autorisatie.\n\
+    \n## Inhoud\n\nDe inhoud wordt beheerd door VNG Realisatie. Om de inhoud van\n\
+    referentielijsten bij te werken, contacteer dan VNG Realisatie via e-mail of\n\
+    op Github.\n\nDe inhoud van de Gemeentelijke Selectielijst wordt ge\xEFmporteerd\
+    \ vanuit de\ngepubliceerde Excel-bestanden.\n"
   contact:
-    url: https://github.com/maykinmedia/vng-referentielijsten
-    email: support@maykinmedia.nl
+    url: https://github.com/VNG-Realisatie/VNG-referentielijsten
+    email: standaarden.ondersteuning@vng.nl
   license:
     name: EUPL 1.2
     url: https://opensource.org/licenses/EUPL-1.2
   version: 1.0.0-alpha
-security:
-- JWT-Claims: []
 paths:
   /communicatiekanalen:
     get:
@@ -1136,11 +1147,6 @@ paths:
 servers:
 - url: /api/v1
 components:
-  securitySchemes:
-    JWT-Claims:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
   schemas:
     CommunicatieKanaal:
       required:
