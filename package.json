@@ -1,6 +1,6 @@
 {
   "name": "vrl",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "VNG-referentielijsten API",
   "main": "src/index.js",
   "directories": {

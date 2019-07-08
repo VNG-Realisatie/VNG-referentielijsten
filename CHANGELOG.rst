@@ -2,6 +2,13 @@
 Change history
 ==============
 
+0.5.4 (2019-07-08)
+==================
+
+Improved documentation
+
+Also bumped to Django 2.2.x (LTS).
+
 0.5.3 (2019-07-08)
 ==================
 
