@@ -8,24 +8,65 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ProcesType',
+            name="ProcesType",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('uuid', models.UUIDField(default=uuid.uuid4, verbose_name='uuid')),
-                ('nummer', models.PositiveSmallIntegerField(help_text='Nummer van de selectielijstcategorie', unique=True, verbose_name='procestypenummer')),
-                ('naam', models.CharField(help_text='Benaming van het procestype', max_length=40, verbose_name='procestypenaam')),
-                ('omschrijving', models.CharField(help_text='Omschrijving van het procestype', max_length=80, verbose_name='procestypeomschrijving')),
-                ('toelichting', models.TextField(help_text='Toelichting van het procestype', verbose_name='procestypetoelichting')),
-                ('procesobject', models.CharField(help_text='Object waar de uitvoering van het proces op van toepassing is en waarvan de bestaans- of geldigheidsduur eventueel van belang is bij het bepalen van de start van de bewaartermijn', max_length=80, verbose_name='procesobject')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("uuid", models.UUIDField(default=uuid.uuid4, verbose_name="uuid")),
+                (
+                    "nummer",
+                    models.PositiveSmallIntegerField(
+                        help_text="Nummer van de selectielijstcategorie",
+                        unique=True,
+                        verbose_name="procestypenummer",
+                    ),
+                ),
+                (
+                    "naam",
+                    models.CharField(
+                        help_text="Benaming van het procestype",
+                        max_length=40,
+                        verbose_name="procestypenaam",
+                    ),
+                ),
+                (
+                    "omschrijving",
+                    models.CharField(
+                        help_text="Omschrijving van het procestype",
+                        max_length=80,
+                        verbose_name="procestypeomschrijving",
+                    ),
+                ),
+                (
+                    "toelichting",
+                    models.TextField(
+                        help_text="Toelichting van het procestype",
+                        verbose_name="procestypetoelichting",
+                    ),
+                ),
+                (
+                    "procesobject",
+                    models.CharField(
+                        help_text="Object waar de uitvoering van het proces op van toepassing is en waarvan de bestaans- of geldigheidsduur eventueel van belang is bij het bepalen van de start van de bewaartermijn",
+                        max_length=80,
+                        verbose_name="procesobject",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'procestype',
-                'verbose_name_plural': 'procestypen',
+                "verbose_name": "procestype",
+                "verbose_name_plural": "procestypen",
             },
         ),
     ]

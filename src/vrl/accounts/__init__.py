@@ -1,1 +1,1 @@
-default_app_config = 'vrl.accounts.apps.AccountsConfig'
+default_app_config = "vrl.accounts.apps.AccountsConfig"

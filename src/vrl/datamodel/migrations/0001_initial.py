@@ -8,21 +8,50 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='CommunicatieKanaal',
+            name="CommunicatieKanaal",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('uuid', models.UUIDField(default=uuid.uuid4, help_text='Unieke resource identifier (UUID4)', unique=True)),
-                ('naam', models.CharField(help_text='De gangbare naam van het communicatiekanaal.', max_length=20, unique=True, verbose_name='naam')),
-                ('omschrijving', models.TextField(help_text='Toelichtende beschrijving van (de naam van) het communicatiekanaal.', max_length=200, verbose_name='omschrijving')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "uuid",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        help_text="Unieke resource identifier (UUID4)",
+                        unique=True,
+                    ),
+                ),
+                (
+                    "naam",
+                    models.CharField(
+                        help_text="De gangbare naam van het communicatiekanaal.",
+                        max_length=20,
+                        unique=True,
+                        verbose_name="naam",
+                    ),
+                ),
+                (
+                    "omschrijving",
+                    models.TextField(
+                        help_text="Toelichtende beschrijving van (de naam van) het communicatiekanaal.",
+                        max_length=200,
+                        verbose_name="omschrijving",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'communicatiekanaal',
-                'verbose_name_plural': 'communicatiekanalen',
+                "verbose_name": "communicatiekanaal",
+                "verbose_name_plural": "communicatiekanalen",
             },
         ),
     ]

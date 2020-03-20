@@ -6,9 +6,5 @@ from vrl.datamodel.models import CommunicatieKanaal
 class CommunicatieKanaalSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CommunicatieKanaal
-        fields = ('url', 'naam', 'omschrijving')
-        extra_kwargs = {
-            'url': {
-                'lookup_field': 'uuid',
-            }
-        }
+        fields = ("url", "naam", "omschrijving")
+        extra_kwargs = {"url": {"lookup_field": "uuid",}}

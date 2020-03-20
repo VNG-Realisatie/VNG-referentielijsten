@@ -9,6 +9,7 @@ class CommunicatieKanaalViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Raadpleeg de lijst van communicatiekanalen.
     """
-    queryset = CommunicatieKanaal.objects.order_by('naam')
+
+    queryset = CommunicatieKanaal.objects.order_by("naam")
     serializer_class = CommunicatieKanaalSerializer
-    lookup_field = 'uuid'
+    lookup_field = "uuid"
