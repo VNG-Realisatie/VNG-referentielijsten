@@ -40,7 +40,7 @@ References
 
 .. |build-status| image:: https://travis-ci.org/VNG-Realisatie/vng-referentielijsten.svg?branch=develop
     :alt: Build status
-    :target: https://travis-ci.org/VNG-Realisatie/vng-referentielijsten.svg?branch=develop
+    :target: https://travis-ci.org/VNG-Realisatie/vng-referentielijsten
 
 .. |requirements| image:: https://requires.io/github/maykinmedia/vng-referentielijsten/requirements.svg?branch=master
      :target: https://requires.io/github/maykinmedia/vng-referentielijsten/requirements/?branch=master
