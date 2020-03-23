@@ -38,9 +38,9 @@ References
 * `Code <https://github.com/maykinmedia/vng-referentielijsten>`_
 
 
-.. |build-status| image:: http://jenkins.nlx.io/buildStatus/icon?job=vng-referentielijsten-stable
+.. |build-status| image:: https://travis-ci.org/VNG-Realisatie/vng-referentielijsten.svg?branch=master
     :alt: Build status
-    :target: http://jenkins.nlx.io/job/vng-referentielijsten-stable
+    :target: https://travis-ci.org/VNG-Realisatie/vng-referentielijsten
 
 .. |requirements| image:: https://requires.io/github/maykinmedia/vng-referentielijsten/requirements.svg?branch=master
      :target: https://requires.io/github/maykinmedia/vng-referentielijsten/requirements/?branch=master
