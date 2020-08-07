@@ -9,6 +9,7 @@ class ProcesTypeFactory(factory.django.DjangoModelFactory):
     omschrijving = factory.Faker("text")
     toelichting = factory.Faker("text")
     procesobject = factory.Faker("bs")
+    jaar = factory.Sequence(lambda n: n)
 
     class Meta:
         model = "selectielijst.ProcesType"
