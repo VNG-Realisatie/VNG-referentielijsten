@@ -15,9 +15,7 @@ class ProcesType(models.Model):
     uuid = models.UUIDField(_("uuid"), default=uuid.uuid4)
 
     nummer = models.PositiveSmallIntegerField(
-        _("procestypenummer"),
-        unique=True,
-        help_text=_("Nummer van de selectielijstcategorie"),
+        _("procestypenummer"), help_text=_("Nummer van de selectielijstcategorie"),
     )
     naam = models.CharField(
         _("procestypenaam"), max_length=100, help_text=_("Benaming van het procestype")
@@ -39,13 +37,20 @@ class ProcesType(models.Model):
             "start van de bewaartermijn"
         ),
     )
+    jaar = models.PositiveIntegerField(
+        help_text=_("Het jaartal waartoe dit ProcesType behoort")
+    )
 
     class Meta:
         verbose_name = _("procestype")
         verbose_name_plural = _("procestypen")
+        unique_together = (
+            "nummer",
+            "jaar",
+        )
 
     def __str__(self):
-        return f"{self.nummer} - {self.naam}"
+        return f"{self.nummer} - {self.naam} ({self.jaar})"
 
 
 class Resultaat(models.Model):
