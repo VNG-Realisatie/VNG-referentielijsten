@@ -15,6 +15,7 @@ from vrl.selectielijst.management.commands.load_data_from_excel import (
 from vrl.selectielijst.models import ProcesType, Resultaat
 
 TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), "testdata.xls")
+TESTDATA_2020_FILENAME = os.path.join(os.path.dirname(__file__), "testdata_2020.xls")
 
 
 class LoadDataFromExcelTest(TestCase):
@@ -252,6 +253,17 @@ class LoadDataFromExcelTest(TestCase):
 
         # for Resultaat
         self.assertEqual(len(Resultaat.objects.all()), 305)
+        # for ProcesType - count distinct nummer
+        self.assertEqual(len(ProcesType.objects.all()), 29)
+
+    def test_command_success_testdata_2020(self):
+        """
+        test handle method: read test data and write them into model. Check number of obs
+        """
+        call_command("load_data_from_excel", TESTDATA_2020_FILENAME, self.jaar)
+
+        # for Resultaat
+        self.assertEqual(len(Resultaat.objects.all()), 346)
         # for ProcesType - count distinct nummer
         self.assertEqual(len(ProcesType.objects.all()), 29)
 

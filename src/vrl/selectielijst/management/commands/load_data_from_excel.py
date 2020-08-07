@@ -26,10 +26,10 @@ def parse_duration(dur_str):
     if not dur_str:
         return
 
-    if "Direct" in dur_str or "vernietigen" in dur_str:
+    if "direct" in dur_str.lower() or "vernietigen" in dur_str:
         return relativedelta(days=0)
 
-    NL_EN = {"jaar": "years", "weken": "weeks", "maanden": "months"}
+    NL_EN = {"jaar": "years", "weken": "weeks", "maanden": "months", "dagen": "days"}
     num, period = dur_str.split()
     period = NL_EN[period.lower()]
     num = float(num)
@@ -87,7 +87,9 @@ def prepare_resultaat(raw):
     clean_data["procestermijn"] = check_choice(procestermijn, Procestermijnen.labels)
     clean_data["procestermijn_opmerking"] = opmerking
     clean_data["bewaartermijn"] = parse_duration(raw["Bewaartermijn"])
-    clean_data["toelichting"] = raw["Toelichting"]
+    clean_data["toelichting"] = raw.get(
+        "Toelichting", raw.get("Toelichting/voorbeelden")
+    )
     clean_data["algemeen_bestuur_en_inrichting_organisatie"] = bool(
         raw["Algemeen bestuur en inrichting organisatie"]
     )
