@@ -2,6 +2,15 @@
 Change history
 ==============
 
+0.5.5 (2020-08-12)
+=================
+
+* Added year-attribute to ProcessType and relevant filtering
+* All existing ProcessType instances will get year 2017
+* Pre-load Selectielijst 2020
+* Updated Django to 2.2.15
+* Updated npm libraries
+
 0.5.4 (2019-07-08)
 ==================
 
