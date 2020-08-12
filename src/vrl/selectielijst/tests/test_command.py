@@ -15,14 +15,18 @@ from vrl.selectielijst.management.commands.load_data_from_excel import (
 from vrl.selectielijst.models import ProcesType, Resultaat
 
 TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), "testdata.xls")
+TESTDATA_2020_FILENAME = os.path.join(os.path.dirname(__file__), "testdata_2020.xls")
 
 
 class LoadDataFromExcelTest(TestCase):
     """ Test my custom command."""
 
+    maxDiff = None
+
     def setUp(self):
         self.dataset = tablib.import_set(open(TESTDATA_FILENAME, "rb").read())
 
+        self.jaar = 2017
         self.raw = {
             "Procestypenummer": 1,
             "Procestypenaam": "Instellen en inrichten organisatie",
@@ -131,10 +135,11 @@ class LoadDataFromExcelTest(TestCase):
         test prepare_procestype function
         """
         self.assertDictEqual(
-            prepare_procestype(self.raw),
+            prepare_procestype(self.raw, self.jaar),
             {
                 "nummer": 1,
                 "naam": "Instellen en inrichten organisatie",
+                "jaar": self.jaar,
                 "omschrijving": "Instellen en inrichten organisatie",
                 "toelichting": "Dit procestype betreft het instellen van een nieuw organisatieonderdeel of een nieuw orgaan waar het orgaan in deelneemt. Dit procestype betreft eveneens het inrichten van het eigen orgaan. Dit kan kleinschalig plaatsvinden bijvoorbeeld het wijzigen van de uitvoering van een wettelijke taak of grootschalig wanneer er een organisatiewijziging wordt doorgevoerd.",
                 "procesobject": "De vastgestelde organisatie inrichting",
@@ -145,7 +150,9 @@ class LoadDataFromExcelTest(TestCase):
         """
         test prepare_procestype function: all general cols + cols for generiek resultaat
         """
-        proces_type = ProcesType.objects.create(**prepare_procestype(self.raw))
+        proces_type = ProcesType.objects.create(
+            **prepare_procestype(self.raw, self.jaar)
+        )
 
         self.assertDictEqual(
             prepare_resultaat(self.raw),
@@ -182,7 +189,9 @@ class LoadDataFromExcelTest(TestCase):
         """
         test prepare_procestype function: cols for specifiek resultaat
         """
-        proces_type = ProcesType.objects.create(**prepare_procestype(self.raw))
+        proces_type = ProcesType.objects.create(
+            **prepare_procestype(self.raw, self.jaar)
+        )
         generiek_resultaat = Resultaat.objects.create(**prepare_resultaat(self.raw))
 
         specifiek = prepare_resultaat(self.specifiek)
@@ -200,7 +209,7 @@ class LoadDataFromExcelTest(TestCase):
         """
         test handle method: test if could be created model object after prepare_procestype function
         """
-        procestype_data = prepare_procestype(self.raw)
+        procestype_data = prepare_procestype(self.raw, self.jaar)
 
         proces_type = ProcesType.objects.create(**procestype_data)
 
@@ -210,7 +219,9 @@ class LoadDataFromExcelTest(TestCase):
         """
         test handle method: if could be created model object after prepare_resultaat function
         """
-        proces_type = ProcesType.objects.create(**prepare_procestype(self.raw))
+        proces_type = ProcesType.objects.create(
+            **prepare_procestype(self.raw, self.jaar)
+        )
         generiek_resultaat_data = prepare_resultaat(self.raw)
 
         generiek_resultaat = Resultaat.objects.create(**generiek_resultaat_data)
@@ -222,7 +233,9 @@ class LoadDataFromExcelTest(TestCase):
         """
         test handle method: test if could be created model object after prepare_resultaat function for specifiek case
         """
-        proces_type = ProcesType.objects.create(**prepare_procestype(self.raw))
+        proces_type = ProcesType.objects.create(
+            **prepare_procestype(self.raw, self.jaar)
+        )
         generiek_resultaat = Resultaat.objects.create(**prepare_resultaat(self.raw))
         specifiek_resultaat_data = prepare_resultaat(self.specifiek)
 
@@ -236,10 +249,21 @@ class LoadDataFromExcelTest(TestCase):
         """
         test handle method: read test data and write them into model. Check number of obs
         """
-        call_command("load_data_from_excel", TESTDATA_FILENAME)
+        call_command("load_data_from_excel", TESTDATA_FILENAME, self.jaar)
 
         # for Resultaat
         self.assertEqual(len(Resultaat.objects.all()), 305)
+        # for ProcesType - count distinct nummer
+        self.assertEqual(len(ProcesType.objects.all()), 29)
+
+    def test_command_success_testdata_2020(self):
+        """
+        test handle method: read test data and write them into model. Check number of obs
+        """
+        call_command("load_data_from_excel", TESTDATA_2020_FILENAME, self.jaar)
+
+        # for Resultaat
+        self.assertEqual(len(Resultaat.objects.all()), 346)
         # for ProcesType - count distinct nummer
         self.assertEqual(len(ProcesType.objects.all()), 29)
 
@@ -250,9 +274,11 @@ class LoadDataFromExcelTest(TestCase):
         unique_data = self.raw.copy()
         unique_data["Procestypenaam"] = "Unique procestype"
         # save object with nummer, which exists in xls file
-        proces_type = ProcesType.objects.create(**prepare_procestype(unique_data))
+        proces_type = ProcesType.objects.create(
+            **prepare_procestype(unique_data, self.jaar)
+        )
 
-        call_command("load_data_from_excel", TESTDATA_FILENAME)
+        call_command("load_data_from_excel", TESTDATA_FILENAME, self.jaar)
 
         # check that our command overwrote current object
         self.assertEqual(
@@ -268,10 +294,12 @@ class LoadDataFromExcelTest(TestCase):
         """
         unique_data = self.raw.copy()
         unique_data["Resultaat"] = "Unique resultaat"
-        proces_type = ProcesType.objects.create(**prepare_procestype(unique_data))
+        proces_type = ProcesType.objects.create(
+            **prepare_procestype(unique_data, self.jaar)
+        )
         resultaat = Resultaat.objects.create(**prepare_resultaat(unique_data))
 
-        call_command("load_data_from_excel", TESTDATA_FILENAME)
+        call_command("load_data_from_excel", TESTDATA_FILENAME, self.jaar)
 
         # check that our command overwrote current object
         self.assertEqual(

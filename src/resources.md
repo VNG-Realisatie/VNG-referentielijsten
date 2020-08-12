@@ -22,6 +22,7 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_2.0/doc/o
 | --- | --- | --- | --- | --- |
 | url |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
 | nummer | Nummer van de selectielijstcategorie | integer | ja | C​R​U​D |
+| jaar | Het jaartal waartoe dit ProcesType behoort | integer | ja | C​R​U​D |
 | naam | Benaming van het procestype | string | ja | C​R​U​D |
 | omschrijving | Omschrijving van het procestype | string | ja | C​R​U​D |
 | toelichting | Toelichting van het procestype | string | ja | C​R​U​D |

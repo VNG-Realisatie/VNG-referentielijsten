@@ -11,6 +11,7 @@ class ProcesTypeSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             "url",
             "nummer",
+            "jaar",
             "naam",
             "omschrijving",
             "toelichting",

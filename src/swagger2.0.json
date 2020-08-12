@@ -361,7 +361,15 @@
                 "operationId": "procestype_list",
                 "summary": "Ontsluit de selectielijst procestypen.",
                 "description": "Procestypen worden gerefereerd in zaaktypecatalogi - bij het configureren\nvan een zaaktype wordt aangegeven welk procestype van toepassing is, zodat\nhet archiefregime van zaken bepaald kan worden.\n\nZie https://vng.nl/files/vng/20170706-selectielijst-gemeenten-intergemeentelijke-organen-2017.pdf\nvoor de bron van de inhoud.",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "jaar",
+                        "in": "query",
+                        "description": "Het jaartal waartoe dit ProcesType behoort",
+                        "required": false,
+                        "type": "number"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "",
@@ -370,6 +378,20 @@
                             "items": {
                                 "$ref": "#/definitions/ProcesType"
                             }
+                        },
+                        "headers": {
+                            "API-version": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ValidatieFout"
                         },
                         "headers": {
                             "API-version": {
@@ -1402,6 +1424,7 @@
         "ProcesType": {
             "required": [
                 "nummer",
+                "jaar",
                 "naam",
                 "omschrijving",
                 "toelichting",
@@ -1420,6 +1443,13 @@
                     "description": "Nummer van de selectielijstcategorie",
                     "type": "integer",
                     "maximum": 32767,
+                    "minimum": 0
+                },
+                "jaar": {
+                    "title": "Jaar",
+                    "description": "Het jaartal waartoe dit ProcesType behoort",
+                    "type": "integer",
+                    "maximum": 2147483647,
                     "minimum": 0
                 },
                 "naam": {
@@ -1448,6 +1478,87 @@
                     "type": "string",
                     "maxLength": 80,
                     "minLength": 1
+                }
+            }
+        },
+        "FieldValidationError": {
+            "required": [
+                "name",
+                "code",
+                "reason"
+            ],
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "description": "Naam van het veld met ongeldige gegevens",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "code": {
+                    "title": "Code",
+                    "description": "Systeemcode die het type fout aangeeft",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "reason": {
+                    "title": "Reason",
+                    "description": "Uitleg wat er precies fout is met de gegevens",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "ValidatieFout": {
+            "required": [
+                "code",
+                "title",
+                "status",
+                "detail",
+                "instance",
+                "invalidParams"
+            ],
+            "type": "object",
+            "properties": {
+                "type": {
+                    "title": "Type",
+                    "description": "URI referentie naar het type fout, bedoeld voor developers",
+                    "type": "string"
+                },
+                "code": {
+                    "title": "Code",
+                    "description": "Systeemcode die het type fout aangeeft",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "title": {
+                    "title": "Title",
+                    "description": "Generieke titel voor het type fout",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "status": {
+                    "title": "Status",
+                    "description": "De HTTP status code",
+                    "type": "integer"
+                },
+                "detail": {
+                    "title": "Detail",
+                    "description": "Extra informatie bij de fout, indien beschikbaar",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "instance": {
+                    "title": "Instance",
+                    "description": "URI met referentie naar dit specifiek voorkomen van de fout. Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "invalidParams": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FieldValidationError"
+                    }
                 }
             }
         },
@@ -1646,87 +1757,6 @@
                     "description": "Voorbeeld: '25 jaar', '30 jaar, '5 of 10 jaar'",
                     "type": "string",
                     "maxLength": 20
-                }
-            }
-        },
-        "FieldValidationError": {
-            "required": [
-                "name",
-                "code",
-                "reason"
-            ],
-            "type": "object",
-            "properties": {
-                "name": {
-                    "title": "Name",
-                    "description": "Naam van het veld met ongeldige gegevens",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "code": {
-                    "title": "Code",
-                    "description": "Systeemcode die het type fout aangeeft",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "reason": {
-                    "title": "Reason",
-                    "description": "Uitleg wat er precies fout is met de gegevens",
-                    "type": "string",
-                    "minLength": 1
-                }
-            }
-        },
-        "ValidatieFout": {
-            "required": [
-                "code",
-                "title",
-                "status",
-                "detail",
-                "instance",
-                "invalidParams"
-            ],
-            "type": "object",
-            "properties": {
-                "type": {
-                    "title": "Type",
-                    "description": "URI referentie naar het type fout, bedoeld voor developers",
-                    "type": "string"
-                },
-                "code": {
-                    "title": "Code",
-                    "description": "Systeemcode die het type fout aangeeft",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "title": {
-                    "title": "Title",
-                    "description": "Generieke titel voor het type fout",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "status": {
-                    "title": "Status",
-                    "description": "De HTTP status code",
-                    "type": "integer"
-                },
-                "detail": {
-                    "title": "Detail",
-                    "description": "Extra informatie bij de fout, indien beschikbaar",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "instance": {
-                    "title": "Instance",
-                    "description": "URI met referentie naar dit specifiek voorkomen van de fout. Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.",
-                    "type": "string",
-                    "minLength": 1
-                },
-                "invalidParams": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/FieldValidationError"
-                    }
                 }
             }
         }

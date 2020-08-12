@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from ..models import ProcesType, Resultaat
-from .filters import ResultaatFilter
+from .filters import ProcesTypeFilter, ResultaatFilter
 from .serializers import ProcesTypeSerializer, ResultaatSerializer
 
 
@@ -20,6 +20,7 @@ class ProcesTypeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ProcesType.objects.order_by("nummer")
     serializer_class = ProcesTypeSerializer
     lookup_field = "uuid"
+    filterset_class = ProcesTypeFilter
     pagination_class = None
 
 

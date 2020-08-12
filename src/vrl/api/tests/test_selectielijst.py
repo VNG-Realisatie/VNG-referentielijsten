@@ -55,6 +55,23 @@ class ProcesTypeTests(APITestCase):
             f"http://testserver{procestype_url}",
         )
 
+    def test_filter_procestype_by_jaar(self):
+        url = reverse("procestype-list")
+        procestype1 = ProcesTypeFactory.create(jaar=2017)
+        procestype2 = ProcesTypeFactory.create(jaar=2018)
+
+        response = self.client.get(url, {"jaar": 2017})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response_data = response.json()
+        self.assertEqual(len(response_data), 1)
+        self.assertEqual(
+            response_data[0]["url"], f"http://testserver{reverse(procestype1)}",
+        )
+        self.assertEqual(
+            response_data[0]["jaar"], 2017,
+        )
+
 
 class ResultaatTests(APITestCase):
     def test_get_resultaat(self):

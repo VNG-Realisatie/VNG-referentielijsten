@@ -26,10 +26,10 @@ def parse_duration(dur_str):
     if not dur_str:
         return
 
-    if "Direct" in dur_str or "vernietigen" in dur_str:
+    if "direct" in dur_str.lower() or "vernietigen" in dur_str:
         return relativedelta(days=0)
 
-    NL_EN = {"jaar": "years", "weken": "weeks", "maanden": "months"}
+    NL_EN = {"jaar": "years", "weken": "weeks", "maanden": "months", "dagen": "days"}
     num, period = dur_str.split()
     period = NL_EN[period.lower()]
     num = float(num)
@@ -44,13 +44,14 @@ def parse_duration(dur_str):
     return rel_delta
 
 
-def prepare_procestype(raw):
+def prepare_procestype(raw, jaar):
     clean_data = {}
     clean_data["nummer"] = raw["Procestypenummer"]
     clean_data["naam"] = raw["Procestypenaam"]
     clean_data["omschrijving"] = raw["Procestypeomschrijving"]
     clean_data["toelichting"] = raw["Procestypetoelichting"]
     clean_data["procesobject"] = raw["procesobject"]
+    clean_data["jaar"] = jaar
     return clean_data
 
 
@@ -86,7 +87,9 @@ def prepare_resultaat(raw):
     clean_data["procestermijn"] = check_choice(procestermijn, Procestermijnen.labels)
     clean_data["procestermijn_opmerking"] = opmerking
     clean_data["bewaartermijn"] = parse_duration(raw["Bewaartermijn"])
-    clean_data["toelichting"] = raw["Toelichting"]
+    clean_data["toelichting"] = raw.get(
+        "Toelichting", raw.get("Toelichting/voorbeelden")
+    )
     clean_data["algemeen_bestuur_en_inrichting_organisatie"] = bool(
         raw["Algemeen bestuur en inrichting organisatie"]
     )
@@ -115,18 +118,22 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str, help="Path to excel file")
+        parser.add_argument("year", type=str, help="The year to which the data belongs")
 
     def handle(self, *args, **kwargs):
         file_path = kwargs["file_path"]
+        year = kwargs["year"]
         with open(file_path, "rb") as f:
             file_bin_input = f.read()
         dataset = tablib.import_set(file_bin_input)
         for raw in dataset.dict:
             # load to ProcesType
-            processtype_data = prepare_procestype(raw)
+            processtype_data = prepare_procestype(raw, year)
             # if current nummer already exists - update it
             p, created = ProcesType.objects.update_or_create(
-                nummer=processtype_data["nummer"], defaults=processtype_data
+                nummer=processtype_data["nummer"],
+                defaults=processtype_data,
+                jaar=processtype_data["jaar"],
             )
 
             # load to Resultaat
