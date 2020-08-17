@@ -7,8 +7,10 @@ from django.db import migrations
 
 
 def load_selectielijst_2020(apps, schema_editor):
-    if sys.argv[1] != "test":
-        call_command("loaddata", "src/fixtures/selectielijst_2020_fixture.json")
+    # Removed in 1.0.5 to prevent failing migrations due to data changes.
+    # if sys.argv[1] != "test":
+    #     call_command("loaddata", "src/fixtures/selectielijst_2020_fixture.json")
+    pass
 
 
 class Migration(migrations.Migration):
