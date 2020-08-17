@@ -7,7 +7,7 @@ from django.db import migrations
 
 
 def load_selectielijst_2020(apps, schema_editor):
-    # Removed in 1.0.5 to prevent failing migrations due to data changes.
+    # Removed in 0.5.6 to prevent failing migrations due to data changes.
     # if sys.argv[1] != "test":
     #     call_command("loaddata", "src/fixtures/selectielijst_2020_fixture.json")
     pass
