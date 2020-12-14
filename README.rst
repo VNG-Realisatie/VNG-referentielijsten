@@ -22,7 +22,7 @@ Deze API centraliseert het beheer van deze lijsten en stelt deze beschikbaar
 om in andere APIs gebruikt te worden, teneinde duplicatie van gegevens te
 voorkomen.
 
-Een alpha-versie wordt gehost op de `testomgeving`_.
+Een alpha-versie wordt gehost op https://referentielijsten-api.vng.cloud/api/v1/schema/
 
 Documentation
 =============
