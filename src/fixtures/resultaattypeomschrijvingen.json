@@ -1,0 +1,32 @@
+[
+  {
+    "model": "datamodel.resultaattypeomschrijvinggeneriek",
+    "pk": 1,
+    "fields": {
+      "uuid": "fb65d251-1518-4185-865f-b8bdcfad07b1",
+      "omschrijving": "Toegekend",
+      "definitie": "Dit is testdata",
+      "opmerking": "Dit is testdata"
+    }
+  },
+  {
+    "model": "datamodel.resultaattypeomschrijvinggeneriek",
+    "pk": 2,
+    "fields": {
+      "uuid": "e6a0c939-3404-45b0-88e3-76c94fb80ea7",
+      "omschrijving": "Afgewezen",
+      "definitie": "Dit is testdata",
+      "opmerking": "Dit is testdata"
+    }
+  },
+  {
+    "model": "datamodel.resultaattypeomschrijvinggeneriek",
+    "pk": 3,
+    "fields": {
+      "uuid": "a6a0bd73-262a-401a-b629-9c4a908c69b5",
+      "omschrijving": "Ingetrokken",
+      "definitie": "Dit is testdata",
+      "opmerking": "Dit is testdata"
+    }
+  }
+]
