@@ -66,10 +66,12 @@ class ProcesTypeTests(APITestCase):
         response_data = response.json()
         self.assertEqual(len(response_data), 1)
         self.assertEqual(
-            response_data[0]["url"], f"http://testserver{reverse(procestype1)}",
+            response_data[0]["url"],
+            f"http://testserver{reverse(procestype1)}",
         )
         self.assertEqual(
-            response_data[0]["jaar"], 2017,
+            response_data[0]["jaar"],
+            2017,
         )
 
 

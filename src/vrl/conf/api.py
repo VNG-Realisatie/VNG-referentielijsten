@@ -10,6 +10,7 @@ REST_FRAMEWORK[
 ] = "rest_framework.pagination.PageNumberPagination"
 REST_FRAMEWORK["PAGE_SIZE"] = 100
 
+DOCUMENTATION_INFO_MODULE = "vrl.api.schema"
 
 SPECTACULAR_SETTINGS = BASE_SPECTACULAR_SETTINGS.copy()
 SPECTACULAR_SETTINGS.update(

@@ -252,6 +252,7 @@ SESSION_COOKIE_NAME = "vrl_sessionid"
 # Custom settings
 #
 PROJECT_NAME = "vrl"
+SITE_TITLE = "Referentielijsten (VRL)"
 ENVIRONMENT = None
 SHOW_ALERT = True
 
@@ -265,11 +266,11 @@ AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
 AXES_COOLOFF_TIME = 1  # One hour
 AXES_ONLY_USER_FAILURES = (
-    False
-)  # Default: False (you might want to block on username rather than IP)
+    False  # Default: False (you might want to block on username rather than IP)
+)
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = (
-    False
-)  # Default: False (you might want to block on username and IP)
+    False  # Default: False (you might want to block on username and IP)
+)
 
 # The default meta precedence order
 IPWARE_META_PRECEDENCE_ORDER = (

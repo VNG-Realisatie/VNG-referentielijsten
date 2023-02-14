@@ -1,6 +1,12 @@
 from django.conf import settings
 
-from drf_yasg import openapi
+__all__ = [
+    "TITLE",
+    "DESCRIPTION",
+    "CONTACT",
+    "LICENSE",
+    "VERSION",
+]
 
 DESCRIPTION = """
 Een API om referentielijstwaarden en de gemeentelijke selectielijst te
@@ -38,15 +44,12 @@ De inhoud van de Gemeentelijke Selectielijst wordt geïmporteerd vanuit de
 gepubliceerde Excel-bestanden.
 """
 
-info = openapi.Info(
-    title="Referentielijsten & Selectielijst API",
-    default_version=settings.API_VERSION,
-    description=DESCRIPTION,
-    contact=openapi.Contact(
-        email="standaarden.ondersteuning@vng.nl",
-        url="https://github.com/VNG-Realisatie/VNG-referentielijsten",
-    ),
-    license=openapi.License(
-        name="EUPL 1.2", url="https://opensource.org/licenses/EUPL-1.2"
-    ),
-)
+
+TITLE = f"{settings.PROJECT_NAME} API"
+
+VERSION = settings.API_VERSION
+CONTACT = {
+    "email": "standaarden.ondersteuning@vng.nl",
+    "url": "https://github.com/VNG-Realisatie/VNG-referentielijsten",
+}
+LICENSE = {"name": "EUPL 1.2", "url": "https://opensource.org/licenses/EUPL-1.2"}
