@@ -21,7 +21,7 @@ info:
   license:
     name: EUPL 1.2
     url: https://opensource.org/licenses/EUPL-1.2
-  version: 1.0.0-alpha
+  version: 0.5.7
 paths:
   /communicatiekanalen:
     get:
