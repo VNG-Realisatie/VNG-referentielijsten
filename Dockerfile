@@ -1,19 +1,12 @@
-# This is a multi-stage build file, which means a stage is used to build
-# the backend (dependencies), the frontend stack and a final production
-# stage re-using assets from the build stages. This keeps the final production
-# image minimal in size.
-
-# Stage 1 - Backend build environment
-# includes compilers and build tooling to create the environment
-
-FROM python:3.7-alpine AS backend-build
-
+# Stage 1 - Compile needed python dependencies
+FROM python:3.9-alpine AS build
 RUN apk --no-cache add \
     gcc \
     musl-dev \
     pcre-dev \
     linux-headers \
     postgresql-dev \
+    python3-dev \
     # libraries installed using git
     git \
     # lxml dependencies
@@ -23,42 +16,54 @@ RUN apk --no-cache add \
     openjpeg-dev \
     zlib-dev
 
-
 WORKDIR /app
-
-# Ensure we use the latest version of pip
-RUN pip install pip setuptools -U
 
 COPY ./requirements /app/requirements
 RUN pip install -r requirements/production.txt
+# Don't copy source code here, as changes will bust the cache for everyting
+# below
 
 
-# Stage 2 - Install frontend deps and build assets
-FROM mhart/alpine-node:10 AS frontend-build
-
-RUN apk --no-cache add \
-    git
+# Stage 2 - build frontend
+FROM mhart/alpine-node:16 AS frontend-build
 
 WORKDIR /app
 
-# copy configuration/build files
-COPY ./*.json /app/
-COPY ./*.js /app/
-COPY ./build /app/build/
-
-# install WITH dev tooling
+COPY ./*.json  /app/
 RUN npm install
 
-# copy source code
-COPY ./src /app/src
+COPY ./*.js ./.babelrc /app/
+COPY ./build /app/build/
 
-# build frontend
+COPY src/vrl/sass/ /app/src/vrl/sass/
 RUN npm run build
 
 
-# Stage 3 - Build docker image suitable for production
-FROM python:3.7-alpine
+# Stage 3 - Prepare CI tests image
+FROM build AS ci
 
+RUN apk --no-cache add \
+    postgresql-client
+
+COPY --from=build /usr/local/lib/python3.9 /usr/local/lib/python3.9
+COPY --from=build /app/requirements /app/requirements
+
+RUN pip install -r requirements/ci.txt --exists-action=s
+
+# Stage 3.2 - Set up testing config
+COPY ./setup.cfg /app/setup.cfg
+
+# Stage 3.3 - Copy source code
+COPY --from=frontend-build /app/src/vrl/static/bundles /app/src/vrl/static/bundles
+COPY ./src /app/src
+ARG COMMIT_HASH
+ENV GIT_SHA=${COMMIT_HASH}
+
+RUN mkdir /app/log && rm /app/src/vrl/conf/test.py
+
+
+# Stage 4 - Build docker image suitable for execution and deployment
+FROM python:3.9-alpine AS production
 RUN apk --no-cache add \
     ca-certificates \
     mailcap \
@@ -72,22 +77,18 @@ RUN apk --no-cache add \
     openjpeg \
     zlib
 
-# TODO: add nodejs for swagger2openapi conversion
+COPY --from=build /usr/local/lib/python3.9 /usr/local/lib/python3.9
+COPY --from=build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 
+# Stage 4.2 - Copy source code
 WORKDIR /app
 COPY ./bin/docker_start.sh /start.sh
 RUN mkdir /app/log
 
-# copy backend build deps
-COPY --from=backend-build /usr/local/lib/python3.7 /usr/local/lib/python3.7
-COPY --from=backend-build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
-
-# copy build statics
-COPY --from=frontend-build /app/src/vrl/static /app/src/vrl/static
-
-
-# copy source code
+COPY --from=frontend-build /app/src/vrl/static/bundles /app/src/vrl/static/bundles
 COPY ./src /app/src
+ARG COMMIT_HASH
+ENV GIT_SHA=${COMMIT_HASH}
 
 ENV DJANGO_SETTINGS_MODULE=vrl.conf.docker
 
