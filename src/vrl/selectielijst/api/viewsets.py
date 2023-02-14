@@ -24,6 +24,7 @@ class ProcesTypeViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = None
 
 
+
 class ResultaatViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Ontsluit de selectielijst resultaten.

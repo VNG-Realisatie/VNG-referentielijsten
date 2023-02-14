@@ -12,9 +12,9 @@ django-hijack
 django-hijack-admin
 django-markup[all_filter_dependencies]
 django-rosetta
-django-redis
 django_admin_index
 django-relativedelta
+django-relativedelta==1.1.2
 django-better-admin-arrayfield
 djangorestframework
 django-filter~=21.1

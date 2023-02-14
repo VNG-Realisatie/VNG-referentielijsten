@@ -74,7 +74,7 @@ class Resultaat(models.Model):
         ),
     )
 
-    nummer = models.PositiveSmallIntegerField(
+    nummer = models.IntegerField(
         _("nummer"),
         help_text=_(
             "Nummer van het resultaat. Dit wordt samengesteld met het procestype en "
