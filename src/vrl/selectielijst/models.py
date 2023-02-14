@@ -15,7 +15,8 @@ class ProcesType(models.Model):
     uuid = models.UUIDField(_("uuid"), default=uuid.uuid4)
 
     nummer = models.PositiveSmallIntegerField(
-        _("procestypenummer"), help_text=_("Nummer van de selectielijstcategorie"),
+        _("procestypenummer"),
+        help_text=_("Nummer van de selectielijstcategorie"),
     )
     naam = models.CharField(
         _("procestypenaam"), max_length=100, help_text=_("Benaming van het procestype")

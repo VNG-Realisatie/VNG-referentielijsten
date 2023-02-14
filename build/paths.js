@@ -6,10 +6,10 @@ var fs = require('fs');
 var pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 
 /** Name of the sources directory */
-var sourcesRoot = 'src/' + pkg.name + '/';
+var sourcesRoot = `src/${pkg.name}/`;
 
 /** Name of the static (source) directory */
-var staticRoot = sourcesRoot + 'static/';
+var staticRoot = `${sourcesRoot}static/`;
 
 
 /**
@@ -19,15 +19,21 @@ module.exports = {
     // Parsed package.json
     package: pkg,
 
+    // Path to the sass entry point
+    scssEntry: sourcesRoot + 'sass/screen.scss',
+
     // Path to the sass (sources) directory
-    sassSrcDir: sourcesRoot + 'sass/',
+    scssSrcDir: `${sourcesRoot}sass/`,
 
     // Path to the sass (sources) entry point
-    sassSrc: sourcesRoot + 'sass/**/*.scss',
+    scssSrc: `${sourcesRoot}sass/**/*.scss`,
 
     // Path to the (transpiled) css directory
-    cssDir: staticRoot + 'css/',
+    cssDir: `${staticRoot}css/`,
+
+    // Path to the (transpiled) js directory
+    jsDir: staticRoot + 'bundles/',
 
     // Path to the fonts directory
-    fontsDir: staticRoot + 'fonts/'
+    fontsDir: `${staticRoot}fonts/`
 };

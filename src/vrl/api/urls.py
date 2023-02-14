@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import include, path
 
 from vng_api_common import routers
-from vng_api_common.schema import SchemaView
+from vng_api_common.views import SchemaViewAPI, SchemaViewRedoc
 
 from vrl.selectielijst.api.viewsets import ProcesTypeViewSet, ResultaatViewSet
 
@@ -17,29 +17,26 @@ router.register("resultaattypeomschrijvingen", ResultaattypeOmschrijvingGeneriek
 router.register("procestypen", ProcesTypeViewSet)
 router.register("resultaten", ResultaatViewSet)
 
-
-# TODO: the EndpointEnumerator seems to choke on path and re_path
-
 urlpatterns = [
     url(
         r"^v(?P<version>\d+)/",
         include(
             [
-                # API documentation
                 url(
-                    r"^schema/openapi(?P<format>\.json|\.yaml)$",
-                    SchemaView.without_ui(cache_timeout=None),
-                    name="schema-json",
+                    r"^schema/openapi.yaml",
+                    SchemaViewAPI.as_view(),
+                    name="schema",
                 ),
                 url(
-                    r"^schema/$",
-                    SchemaView.with_ui("redoc", cache_timeout=None),
+                    r"^schema/",
+                    SchemaViewRedoc.as_view(url_name="schema-redoc"),
                     name="schema-redoc",
                 ),
                 # actual API
                 url(r"^", include(router.urls)),
-                # should not be picked up by drf-yasg
+                # should not be picked up by drf-spectacular
                 path("", include("vng_api_common.api.urls")),
+                path("", include("vng_api_common.notifications.api.urls")),
             ]
         ),
     )

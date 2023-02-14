@@ -27,6 +27,7 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AlterUniqueTogether(
-            name="procestype", unique_together={("nummer", "jaar")},
+            name="procestype",
+            unique_together={("nummer", "jaar")},
         ),
     ]

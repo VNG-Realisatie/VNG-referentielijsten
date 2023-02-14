@@ -34,30 +34,32 @@ DATABASES = {
         "PORT": os.getenv("DB_PORT", 5432),
     }
 }
-
-# Application definition
-
 INSTALLED_APPS = [
     # Note: contenttypes should be first, see Django ticket #10827
     "django.contrib.contenttypes",
     "django.contrib.auth",
     "django.contrib.sessions",
     # Note: If enabled, at least one Site object is required
-    # 'django.contrib.sites',
+    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Optional applications.
     "django.contrib.admin",
-    # 'django.contrib.admindocs',
-    # 'django.contrib.humanize',
-    # 'django.contrib.sitemaps',
     # External applications.
     "axes",
+    "django_filters",
     "corsheaders",
-    "vng_api_common",  # before drf_yasg to override the management command
+    "vng_api_common",  # before drf_spectacular to override the management command
     "vng_api_common.authorizations",
-    "drf_yasg",
+    "vng_api_common.notifications",
+    "solo",
+    "simple_certmanager",
+    "zgw_consumers",
+    "notifications_api_common",
+    "drf_spectacular",
     "rest_framework",
+    "django_markup",
+    "django_better_admin_arrayfield.apps.DjangoBetterAdminArrayfieldConfig",
     # Project applications.
     "vrl.accounts",
     "vrl.api",
@@ -143,7 +145,7 @@ USE_THOUSAND_SEPARATOR = True
 LOCALE_PATHS = (os.path.join(DJANGO_PROJECT_DIR, "conf", "locale"),)
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = "/static/"
 
@@ -157,8 +159,8 @@ STATICFILES_DIRS = (os.path.join(DJANGO_PROJECT_DIR, "static"),)
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -250,6 +252,7 @@ SESSION_COOKIE_NAME = "vrl_sessionid"
 # Custom settings
 #
 PROJECT_NAME = "vrl"
+SITE_TITLE = "Referentielijsten (VRL)"
 ENVIRONMENT = None
 SHOW_ALERT = True
 
@@ -263,11 +266,11 @@ AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
 AXES_COOLOFF_TIME = 1  # One hour
 AXES_ONLY_USER_FAILURES = (
-    False
-)  # Default: False (you might want to block on username rather than IP)
+    False  # Default: False (you might want to block on username rather than IP)
+)
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = (
-    False
-)  # Default: False (you might want to block on username and IP)
+    False  # Default: False (you might want to block on username and IP)
+)
 
 # The default meta precedence order
 IPWARE_META_PRECEDENCE_ORDER = (

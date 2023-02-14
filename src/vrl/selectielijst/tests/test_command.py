@@ -19,7 +19,7 @@ TESTDATA_2020_FILENAME = os.path.join(os.path.dirname(__file__), "testdata_2020.
 
 
 class LoadDataFromExcelTest(TestCase):
-    """ Test my custom command."""
+    """Test my custom command."""
 
     maxDiff = None
 
