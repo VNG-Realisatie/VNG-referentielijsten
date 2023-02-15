@@ -1,6 +1,6 @@
 {
   "name": "vrl",
-  "version": "0.5.7",
+  "version": "0.6.0",
   "description": "vrl referentie-implementatie API",
   "directories": {"doc": "doc"},
   "scripts": {"build": "npm run bundle", "bundle": "webpack", "watch": "webpack -w"},
