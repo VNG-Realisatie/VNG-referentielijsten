@@ -256,6 +256,7 @@ SITE_TITLE = "Referentielijsten (VRL)"
 ENVIRONMENT = None
 SHOW_ALERT = True
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 #
 # Library settings
 #
