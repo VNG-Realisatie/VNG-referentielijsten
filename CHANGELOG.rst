@@ -2,6 +2,14 @@
 Change history
 ==============
 
+0.6.0 (2023-02-15)
+==================
+
+* Updated Django to 3.2
+* Made the VRL work in line with other apis by adding drf-spectacular
+* Added fixtures for procestypen and resultaattypenomschrijvingen
+* Added CICD
+
 0.5.6 (2020-08-17)
 ==================
 

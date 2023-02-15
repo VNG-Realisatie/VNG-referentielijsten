@@ -2,7 +2,7 @@
 VNG-referentielijsten
 =====================
 
-:Version: 0.5.7
+:Version: 0.6.0
 :Source: https://github.com/VNG-Realisatie/VNG-referentielijsten/
 :Keywords: VNG, VNG-realisatie, referentielijsten, api
 :PythonVersion: 3.7
