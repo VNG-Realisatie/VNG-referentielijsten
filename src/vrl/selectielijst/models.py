@@ -14,7 +14,7 @@ from .query import ResultaatQuerySet
 class ProcesType(models.Model):
     uuid = models.UUIDField(_("uuid"), default=uuid.uuid4)
 
-    nummer = models.PositiveSmallIntegerField(
+    nummer = models.IntegerField(
         _("procestypenummer"),
         help_text=_("Nummer van de selectielijstcategorie"),
     )
@@ -38,7 +38,7 @@ class ProcesType(models.Model):
             "start van de bewaartermijn"
         ),
     )
-    jaar = models.PositiveIntegerField(
+    jaar = models.IntegerField(
         help_text=_("Het jaartal waartoe dit ProcesType behoort")
     )
 

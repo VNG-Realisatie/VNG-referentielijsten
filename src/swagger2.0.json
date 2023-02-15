@@ -71,7 +71,7 @@
                                 "schema": {
                                     "type": "string"
                                 },
-                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1."
+                                "description": "Geeft een specifieke API-versie aan in de context van een specifieke aanroep. Voorbeeld: 1.2.1.",
                             }
                         }
                     },
