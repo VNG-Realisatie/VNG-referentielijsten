@@ -7,6 +7,14 @@ VNG-referentielijsten
 :Keywords: VNG, VNG-realisatie, referentielijsten, api
 :PythonVersion: 3.7
 
+
+DEPRECATED
+=========
+De Referentielijsten API is herbouwd en de code plus documentatie zijn te vinden in de betreffende repository: https://github.com/VNG-Realisatie/referentielijsten-api
+Onderstaande documentatie is verouderd en niet meer van toepassing.
+
+
+
 |build-status| |requirements|
 
 Deze API ontsluit de waarden in referentielijsten zoals bepaald door
